@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>PAPERBLOX.ID</title>
+    <link rel="icon" type="image/png" href="img/cartoon.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <style>
+        /* --- GLOBAL RESET --- */
+        * { box-sizing: border-box; }
+
+        :root {
+            --primary: #2C3E50; 
+            --accent: #5DADE2;  
+            --bg: #F4F6F7;      
+            --white: #FFFFFF;
+            --nav-height: 70px;
+            --wa: #25D366;
+            --wa-dark: #1da851;
+            --ig: #E1306C;
+            --tt: #000000;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--nav-height);
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0; padding: 0;
+            background-color: var(--bg);
+            color: var(--primary);
+            line-height: 1.6;
+            width: 100%;
+            overflow-x: hidden;
+            padding-top: var(--nav-height); 
+        }
+
+        /* --- NAVBAR FIXED --- */
+        nav {
+            background: var(--white);
+            height: var(--nav-height);
+            padding: 0 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: fixed; 
+            top: 0; left: 0; right: 0;
+            z-index: 9999;
+            width: 100%;
+        }
+
+        .logo { 
+            font-weight: 800; font-size: 1.5rem; color: var(--primary); 
+            text-decoration: none; letter-spacing: 2px; z-index: 1002;
+        }
+        
+        .nav-right-container { display: flex; align-items: center; gap: 15px; } 
+        .nav-links { display: flex; align-items: center; gap: 20px; }
+        .nav-links a { text-decoration: none; color: var(--primary); font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent); }
+
+        .icon-btn {
+            background: none; border: none; cursor: pointer; position: relative;
+            font-size: 1.3rem; color: var(--primary); padding: 5px;
+            display: flex; align-items: center; justify-content: center;
+            transition: transform 0.2s;
+        }
+        .icon-btn:hover { color: var(--accent); transform: scale(1.1); }
+
+        .cart-badge {
+            position: absolute; top: -2px; right: -8px; background: #e74c3c;
+            color: white; font-size: 0.7rem; height: 18px; width: 18px;
+            display: flex; justify-content: center; align-items: center;
+            border-radius: 50%; font-weight: bold; border: 2px solid var(--white);
+        }
+
+        .hamburger {
+            display: none; cursor: pointer; flex-direction: column; gap: 5px;
+            z-index: 1002; margin-left: 10px;
+        }
+        .hamburger span {
+            display: block; width: 25px; height: 3px; background-color: var(--primary);
+            border-radius: 3px; transition: 0.3s;
+        }
+
+        /* --- SEARCH BAR --- */
+        .search-bar-container {
+            position: fixed; top: var(--nav-height); left: 0; right: 0; width: 100%;
+            background: var(--white); padding: 15px 5%;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.05); z-index: 9998;
+            display: none; border-top: 1px solid #eee;
+            animation: slideDown 0.3s ease;
+        }
+        .search-input {
+            width: 100%; padding: 12px 20px; border: 2px solid #eee;
+            border-radius: 30px; font-size: 1rem; outline: none; transition: 0.3s;
+        }
+        .search-input:focus { border-color: var(--accent); }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- GLOBAL SECTION --- */
+        section { 
+            padding: 60px 8% 60px 8%; 
+            margin-top: 0;
+            text-align: center; width: 100%; position: relative;
+        }
+        .section-title { font-size: 2.5rem; margin-bottom: 20px; position: relative; display: inline-block; }
+        .section-title::after { content: ''; width: 60px; height: 4px; background: var(--accent); position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+            margin-top: 0;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        /* --- HERO SECTION (NEW LOOK) --- */
+        .hero {
+            /* 1. BACKGROUND KEREN: GRID PATTERN + SOFT GLOW */
+            background-color: var(--bg); /* Warna dasar abu muda */
+            
+            /* Membuat motif kotak-kotak tipis (Grid) */
+            background-image: 
+                linear-gradient(rgba(44, 62, 80, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(44, 62, 80, 0.05) 1px, transparent 1px),
+                radial-gradient(circle at 80% 20%, rgba(93, 173, 226, 0.15) 0%, transparent 40%); /* Aksen cahaya biru di pojok kanan atas */
+                
+            /* Ukuran kotak grid (40px) */
+            background-size: 40px 40px, 40px 40px, 100% 100%;
+            
+            /* 2. LAYOUTING (Sama seperti sebelumnya) */
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 30px;       
+            align-items: center; 
+            justify-content: center;
+            padding-left: 5%; padding-right: 5%; 
+            
+            /* Tampilan HP: Tinggi Auto + Padding Besar biar lega */
+            min-height: auto; 
+            padding-top: 120px; 
+            padding-bottom: 120px;
+            
+            position: relative;
+            overflow: hidden;
+            max-width: 100%;
+        }
+
+        .hero-content { flex: 1 1 300px; transform: translateY(0); z-index: 2; }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem) !important;
+            margin-bottom: 5px; 
+            letter-spacing: 2px;
+            line-height: 1.2;
+        }
+
+        .hero-image { flex: 1 1 300px; text-align: center; display: flex; justify-content: center; z-index: 2; }
+        
+        .hero-image img { 
+            width: 100%; max-width: 450px; min-width: 250px; 
+            background-color: var(--white);
+            border-radius: 20px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            filter: contrast(1.05); 
+            transition: transform 0.3s ease;
+            height: auto; object-fit: cover;
+        }
+        .hero-image img:hover { transform: scale(1.02); }
+
+        /* --- KHUSUS LAPTOP/PC (Layar Lebar > 1024px) --- */
+        @media screen and (min-width: 1024px) {
+            .hero {
+                /* Kembalikan ke Full Screen agar terlihat mahal di Laptop */
+                min-height: calc(100vh - var(--nav-height)); 
+                
+                /* Reset padding karena sudah ditengah oleh Flexbox */
+                padding-top: 0; 
+                padding-bottom: 0;
+            }
+        }
+
+        .digital-clock {
+            font-size: 1rem; font-weight: bold; color: var(--primary);
+            background: rgba(255, 255, 255, 0.9); padding: 10px 20px;
+            border-radius: 8px; display: inline-block; margin-bottom: 20px;
+            border: 2px solid var(--primary);
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+            font-family: 'Courier New', Courier, monospace; 
+        }
+
+        .btn {
+            background-color: var(--primary); color: var(--white); padding: 15px 35px;
+            text-decoration: none; border-radius: 30px; font-weight: bold;
+            display: inline-block; transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2); border: 2px solid transparent;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: transparent; color: var(--primary); border: 2px solid var(--primary);
+            transform: translateY(-3px) scale(1.05);
+        }
+
+        /* --- FEATURES --- */
+        .features { background-color: var(--white); z-index: 10; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-top: 50px; }
+        .feature-card { padding: 40px; background: var(--bg); border-radius: 20px; }
+
+        /* --- KATALOG --- */
+        .katalog { background: #e9ecef; padding-top: 80px; }
+        .swiper { 
+            width: 100%; 
+            padding-top: 20px; 
+            padding-bottom: 50px; 
+            margin-top: 40px; 
+        }
+        .swiper-slide {
+            background-position: center; background-size: cover;
+            width: 300px; height: 380px; background: #fff;
+            border-radius: 15px; box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            display: flex; align-items: center; justify-content: center; overflow: hidden;
+        }
+        .swiper-slide img { display: block; width: 100%; height: 100%; object-fit: contain; padding: 20px; mix-blend-mode: multiply; }
+
+        /* --- PEMESANAN --- */
+        .pemesanan-section { background-color: #fff; padding-top: 80px; min-height: 500px; }
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto; }
+        .menu-card { background: #fff; border: 1px solid #eee; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s ease; display: flex; flex-direction: column; }
+        .menu-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .menu-img { background: #f9f9f9; height: 200px; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .menu-img img { max-height: 100%; max-width: 100%; object-fit: contain; mix-blend-mode: multiply; }
+        .menu-info { padding: 20px; text-align: left; display: flex; flex-direction: column; flex-grow: 1; }
+        .menu-info h3 { font-size: 1.2rem; margin: 0 0 10px 0; color: #2c3e50; }
+        .menu-info .desc { font-size: 0.9rem; color: #666; margin-bottom: 15px; line-height: 1.4; flex-grow: 1; }
+        .stars { color: #d4af37; margin-bottom: 15px; font-size: 14px; letter-spacing: 2px; }
+        .price-action { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 15px; }
+        .price { font-weight: bold; font-size: 1.1rem; color: #2c3e50; }
+        .add-btn { background: #2c3e50; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; }
+        .add-btn:hover { background: var(--accent); }
+
+        /* --- PAGINATION STYLE (BARU) --- */
+        .pagination-container {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .page-btn {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            color: var(--primary);
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .page-btn:hover {
+            background-color: #f0f0f0;
+        }
+        .page-btn.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* --- TEAM & CONTACT --- */
+        .team { background: var(--primary); color: var(--white); padding-top: 80px; }
+        .team-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 30px; 
+            justify-content: center; 
+            margin-top: 50px; 
+        }
+        .team-member { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 20px; }
+        .member-photo { width: 130px; height: 130px; border-radius: 50%; background: #fff; margin: 0 auto 20px; overflow: hidden; border: 4px solid var(--accent); }
+        .member-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+        .contact { background: var(--white); padding-top: 80px; }
+        .contact-container { 
+            display: flex; 
+            justify-content: center; 
+            gap: 30px; 
+            flex-wrap: wrap; 
+            margin-top: 50px; 
+        }
+        .contact-card { background: var(--bg); padding: 30px; border-radius: 20px; width: 250px; text-decoration: none; color: var(--primary); transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; border: 2px solid transparent; }
+        .contact-icon { width: 60px; height: 60px; margin-bottom: 15px; fill: var(--primary); transition: 0.3s; }
+        .contact-card:hover { transform: translateY(-10px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .contact-card.wa:hover { border-color: var(--wa); } .contact-card.wa:hover .contact-icon { fill: var(--wa); }
+        .contact-card.ig:hover { border-color: var(--ig); } .contact-card.ig:hover .contact-icon { fill: var(--ig); }
+        .contact-card.tt:hover { border-color: var(--tt); } .contact-card.tt:hover .contact-icon { fill: var(--tt); }
+
+        footer { background: #1a252f; color: #ffffff; padding: 60px 20px; text-align: center; }
+
+        /* --- MODAL --- */
+        .modal { 
+            position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: none; 
+            justify-content: center; align-items: center; z-index: 10001; padding-top: 50px; 
+        }
+        .modal-content { 
+            position: relative; background: var(--white); padding: 30px; border-radius: 20px; 
+            max-width: 420px; width: 90%; text-align: center; animation: fadeUp 0.3s ease; 
+            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+        }
+        .modal-content img { width: 200px; margin-bottom: 20px; }
+        .modal-price { font-size: 1.4rem; font-weight: bold; color: var(--accent); margin: 15px 0; }
+        
+        .modal-close { 
+            position: absolute; top: 15px; right: 18px; 
+            background: transparent; border: none; 
+            font-size: 32px; cursor: pointer; color: var(--primary); 
+            line-height: 1; transition: transform 0.2s ease, color 0.2s ease; 
+        }
+        .modal-close:hover { color: var(--accent); transform: rotate(90deg); }
+
+        /* --- KERANJANG BELANJA --- */
+        .cart-overlay { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.5); z-index: 10002; display: none; 
+            align-items: flex-start; justify-content: center;
+            padding-top: 100px; padding-bottom: 20px;
+        }
+
+        .cart-popup { 
+            background: white; width: 90%; max-width: 400px; border-radius: 15px; 
+            display: flex; flex-direction: column; max-height: 80vh; 
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2); animation: fadeUp 0.3s ease; 
+            overflow: hidden; 
+        }
+
+        .cart-header { 
+            padding: 20px; display: flex; justify-content: space-between; 
+            align-items: center; border-bottom: 1px dashed #ccc; background: white; flex-shrink: 0; 
+        }
+        .cart-header h2 { margin: 0; font-size: 1.3rem; }
+
+        .cart-scroll-area { overflow-y: auto; padding: 20px; flex-grow: 1; }
+
+        .cart-item { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #f0f0f0; }
+        .cart-item img { width: 60px; height: 60px; object-fit: contain; border-radius: 10px; border: 1px solid #eee; }
+        .cart-item-details { flex: 1; text-align: left; display: flex; flex-direction: column; }
+        .cart-item-title { font-weight: bold; font-size: 1rem; margin-bottom: 4px; line-height: 1.2; display: block; width: 100%; }
+        .cart-item-calc { font-size: 0.9rem; color: #666; display: flex; align-items: center; gap: 5px; }
+
+        .qty-control { display: inline-flex; align-items: center; gap: 8px; margin-left: 5px; background: #f0f0f0; padding: 2px 5px; border-radius: 5px;}
+        .qty-btn { background: black; color: white; border: none; width: 20px; height: 20px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 0.8rem; display: flex; align-items: center; justify-content: center;}
+        
+        .cart-total { text-align: center; font-size: 1.2rem; font-weight: bold; padding: 10px 0; border-top: 2px dashed #333; border-bottom: 2px dashed #333; margin: 15px 0; }
+        .buyer-form { text-align: left; }
+        .form-group { margin-bottom: 10px; display: grid; grid-template-columns: 80px 1fr; align-items: center; gap: 10px;}
+        .form-group input, .form-group textarea { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 5px; background: #f9f9f9; }
+        
+        .checkout-btn { 
+            background: #999; color: white; width: 100%; padding: 12px; 
+            border: none; border-radius: 25px; font-weight: bold; 
+            margin-top: 15px; cursor: pointer; transition: 0.3s; 
+        }
+        .checkout-btn.active { background: var(--wa); }
+        .checkout-btn.active:hover {
+            background: var(--wa-dark); 
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+        }
+
+        @keyframes fadeUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        /* --- MEDIA QUERY HP --- */
+        @media screen and (max-width: 900px) {
+            nav { padding: 10px 20px; }
+            .hamburger { display: flex; }
+
+            .nav-links {
+                position: fixed; top: 70px; right: 0; width: 70%; height: calc(100vh - 70px);
+                background-color: var(--white); flex-direction: column; align-items: center;
+                gap: 0; box-shadow: -5px 0 15px rgba(0,0,0,0.1); transform: translateX(100%);
+                transition: transform 0.3s ease-in-out; opacity: 1; z-index: 999; overflow-y: auto;
+            }
+            .nav-links.active { transform: translateX(0%); }
+            .nav-links a { width: 100%; text-align: center; padding: 20px 0; border-bottom: 1px solid #f0f0f0; display: block; font-size: 1.1rem; }
+
+            .hero { 
+                flex-direction: column-reverse; 
+                text-align: center;
+                padding: 40px 20px; 
+                gap: 30px;
+            }
+            .hero-content { flex: auto; width: 100%; margin-top: 30px; }
+            .hero-image { flex: auto; width: 100%; }
+            .hero-image img { width: 80%; max-width: 350px; }
+            
+            .btn { width: auto; display: inline-block; margin-top: 20px; padding: 12px 30px; }
+
+            section { padding-left: 20px; padding-right: 20px; padding-top: 50px; padding-bottom: 40px;}
+            .section-title { font-size: 2rem; }
+            .contact-container { flex-direction: column; }
+            .contact-card { width: 100%; }
+            .swiper-slide { width: 220px; height: 300px; }
+            
+            .cart-popup { width: 95%; max-height: 75vh; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="#home" class="logo">PAPERBLOX.ID</a>
+        
+        <div class="nav-right-container">
+            <div class="nav-links" id="navLinks">
+                <a href="#home" onclick="toggleMenu()">Home</a>
+                <a href="#about" onclick="toggleMenu()">About</a>
+                <a href="#katalog" onclick="toggleMenu()">Katalog</a>
+                <a href="#pemesanan" onclick="toggleMenu()">Pemesanan</a>
+                <a href="#team" onclick="toggleMenu()">Team</a>
+                <a href="#contact" onclick="toggleMenu()">Contact</a>
+            </div>
+
+            <button class="icon-btn" id="searchBtn" onclick="toggleSearch()">
+                <i class="fas fa-search"></i>
+            </button>
+
+            <button class="icon-btn" id="openCartBtn">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-badge" id="cartCount">0</span>
+            </button>
+
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="search-bar-container" id="searchBar">
+        <input type="text" class="search-input" id="searchInput" placeholder="Cari nama karakter (cth: 'u' untuk Uzumaki)...">
+    </div>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div id="digitalClock" class="digital-clock">Loading...</div>
+            <h1>PAPERBLOX.ID</h1>
+            <p style="font-size: 1.1rem; letter-spacing: 12px; color: var(--accent); text-transform: uppercase; font-weight: 300; margin-bottom: 30px;">Lipat Rekat Rakit</p>
+            <a href="#pemesanan" class="btn">Explore Product</a>
+        </div>
+        <div class="hero-image">
+            <img src="img/paperblox.jpg" alt="Papercraft Hero">
+        </div>
+    </section>
+
+    <section class="features" id="about">
+        <h2 class="section-title">Kenapa Paperblox?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div style="font-size: 3rem; margin-bottom: 15px;">💰</div>
+                <h3>Ramah Kantong</h3><p>Mulai dari <strong>Rp20.000</strong> saja.</p>
+            </div>
+            <div class="feature-card">
+                <div style="font-size: 3rem; margin-bottom: 15px;">✂️</div>
+                <h3>Mudah & Seru</h3><p>Pola presisi dengan instruksi yang jelas.</p>
+            </div>
+            <div class="feature-card">
+                <div style="font-size: 3rem; margin-bottom: 15px;">🧠</div>
+                <h3>Digital Detox</h3><p>Latih fokus lewat aktivitas <i>screen-free</i>.</p>
+            </div>
+            <div class="feature-card">
+                <div style="font-size: 3rem; margin-bottom: 15px;">💎</div>
+                <h3>Kertas Premium</h3><p>Bahan halus, warna tajam, dan awet.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="katalog" class="katalog">
+        <h2 class="section-title">Katalog</h2>
+        <p class="section-subtitle">Intip lebih dekat koleksi papercraft favorit yang siap menemani waktu luangmu.</p>
+        
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="img/sasuke.png" alt="Sasuke"></div>
+                <div class="swiper-slide"><img src="img/demonslayer.png" alt="Tanjiro"></div>
+                <div class="swiper-slide"><img src="img/luffy.png" alt="Luffy"></div>
+                <div class="swiper-slide"><img src="img/minato.png" alt="Minato"></div>
+                <div class="swiper-slide"><img src="img/minion.png" alt="Minion"></div>
+                <div class="swiper-slide"><img src="img/zoro.png" alt="Zoro"></div>
+                <div class="swiper-slide"><img src="img/guts.png" alt="Guts"></div>
+                <div class="swiper-slide"><img src="img/nami.png" alt="Nami"></div>
+                <div class="swiper-slide"><img src="img/kakashi.png" alt="Kakashi"></div>
+                <div class="swiper-slide"><img src="img/naruto.png" alt="Naruto"></div>
+                <div class="swiper-slide"><img src="img/sakura.png" alt="Sakura"></div>
+                <div class="swiper-slide"><img src="img/hinata.png" alt="Hinata"></div>
+                <div class="swiper-slide"><img src="img/spy.png" alt="Anya"></div>
+                <div class="swiper-slide"><img src="img/panda.png" alt="Panda"></div>
+                <div class="swiper-slide"><img src="img/robot.png" alt="Robot"></div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
+    <section id="pemesanan" class="pemesanan-section">
+        <h2 class="section-title">Pemesanan</h2>
+        <p class="section-subtitle">Pilih karakter impianmu dan mulai petualangan merakit sekarang juga.</p>
+
+        <div class="menu-grid" id="menuGrid">
+            <div class="menu-card">
+                <div class="menu-img"><img src="img/naruto.png" alt="Uzumaki Naruto"></div>
+                <div class="menu-info">
+                    <h3>Uzumaki Naruto</h3>
+                    <p class="desc">Ninja Konoha dengan semangat api dan mimpi menjadi Hokage.</p>
+                    <div class="stars">★★★★★</div>
+                    <div class="price-action">
+                        <span class="price">Rp20.000</span>
+                        <button class="add-btn" onclick="openProductModal('Uzumaki Naruto', 20000, 'img/naruto.png', 'Ninja Konoha semangat api.')"><i class="fas fa-shopping-cart"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-img"><img src="img/hinata.png" alt="Hinata Hyuga"></div>
+                <div class="menu-info">
+                    <h3>Hinata Hyuga</h3>
+                    <p class="desc">Putri klan Hyuga dengan kekuatan mata Byakugan.</p>
+                    <div class="stars">★★★★★</div>
+                    <div class="price-action">
+                        <span class="price">Rp20.000</span>
+                        <button class="add-btn" onclick="openProductModal('Hinata Hyuga', 20000, 'img/hinata.png', 'Putri Byakugan.')"><i class="fas fa-shopping-cart"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-img"><img src="img/sasuke.png" alt="Uchiha Sasuke"></div>
+                <div class="menu-info">
+                    <h3>Uchiha Sasuke</h3>
+                    <p class="desc">Ninja jenius klan Uchiha dengan kekuatan Sharingan.</p>
+                    <div class="stars">★★★★★</div>
+                    <div class="price-action">
+                        <span class="price">Rp20.000</span>
+                        <button class="add-btn" onclick="openProductModal('Uchiha Sasuke', 20000, 'img/sasuke.png', 'Ninja jenius klan Uchiha.')"><i class="fas fa-shopping-cart"></i></button>
+                    </div>
+                </div>
+            </div>
+             <div class="menu-card">
+                <div class="menu-img"><img src="img/luffy.png" alt="Monkey D. Luffy"></div>
+                <div class="menu-info">
+                    <h3>Monkey D. Luffy</h3>
+                    <p class="desc">Kapten bajak laut Topi Jerami yang akan menjadi Raja Bajak Laut.</p>
+                    <div class="stars">★★★★★</div>
+                    <div class="price-action">
+                        <span class="price">Rp20.000</span>
+                        <button class="add-btn" onclick="openProductModal('Monkey D. Luffy', 20000, 'img/luffy.png', 'Kapten Topi Jerami.')"><i class="fas fa-shopping-cart"></i></button>
+                    </div>
+                </div>
+            </div>
+             <div class="menu-card">
+                <div class="menu-img"><img src="img/zoro.png" alt="Roronoa Zoro"></div>
+                <div class="menu-info">
+                    <h3>Roronoa Zoro</h3>
+                    <p class="desc">Pendekar tiga pedang terkuat dari kru Topi Jerami.</p>
+                    <div class="stars">★★★★★</div>
+                    <div class="price-action">
+                        <span class="price">Rp20.000</span>
+                        <button class="add-btn" onclick="openProductModal('Roronoa Zoro', 20000, 'img/zoro.png', 'Pendekar Tiga Pedang.')"><i class="fas fa-shopping-cart"></i></button>
+                    </div>
+                </div>
+            </div>
+             <div class="menu-card">
+                <div class="menu-img"><img src="img/guts.png" alt="Guts"></div>
+                <div class="menu-info">
+                    <h3>Guts</h3>
+                    <p class="desc">Pendekar hitam dengan pedang raksasa dari dunia Berserk.</p>
+                    <div class="stars">★★★★★</div>
+                    <div class="price-action">
+                        <span class="price">Rp20.000</span>
+                        <button class="add-btn" onclick="openProductModal('Guts', 20000, 'img/guts.png', 'Pendekar kelam Berserk.')"><i class="fas fa-shopping-cart"></i></button>
+                    </div>
+                </div>
+            </div>
+             <div class="menu-card">
+                <div class="menu-img"><img src="img/kakashi.png" alt="Hatake Kakashi"></div>
+                <div class="menu-info">
+                    <h3>Hatake Kakashi</h3>
+                    <p class="desc">Ninja peniru (Copy Ninja) dengan pengalaman tempur tinggi.</p>
+                    <div class="stars">★★★★★</div>
+                    <div class="price-action">
+                        <span class="price">Rp20.000</span>
+                        <button class="add-btn" onclick="openProductModal('Hatake Kakashi', 20000, 'img/kakashi.png', 'Ninja Copy Kakashi.')"><i class="fas fa-shopping-cart"></i></button>
+                    </div>
+                </div>
+            </div>
+             <div class="menu-card">
+                <div class="menu-img"><img src="img/spy.png" alt="Anya Forger"></div>
+                <div class="menu-info">
+                    <h3>Anya Forger</h3>
+                    <p class="desc">Esper lucu dari keluarga Forger. Waku waku!</p>
+                    <div class="stars">★★★★★</div>
+                    <div class="price-action">
+                        <span class="price">Rp20.000</span>
+                        <button class="add-btn" onclick="openProductModal('Anya Forger', 20000, 'img/spy.png', 'Waku waku!')"><i class="fas fa-shopping-cart"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-img"><img src="img/demonslayer.png" alt="Tanjiro Kamado"></div>
+                <div class="menu-info">
+                    <h3>Tanjiro Kamado</h3>
+                    <p class="desc">Pembasmi iblis dengan pedang Nichirin hitam. Tangguh dan baik hati.</p>
+                    <div class="stars">★★★★★</div>
+                    <div class="price-action">
+                        <span class="price">Rp20.000</span>
+                        <button class="add-btn" onclick="openProductModal('Tanjiro Kamado', 20000, 'img/tanjiro.png', 'Pembasmi iblis pedang hitam.')"><i class="fas fa-shopping-cart"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-img"><img src="img/minato.png" alt="Namikaze Minato"></div>
+                <div class="menu-info">
+                    <h3>Namikaze Minato</h3>
+                    <p class="desc">Hokage Keempat, Si Kilat Kuning Konoha dengan jubah ikonik.</p>
+                    <div class="stars">★★★★★</div>
+                    <div class="price-action">
+                        <span class="price">Rp20.000</span>
+                        <button class="add-btn" onclick="openProductModal('Namikaze Minato', 20000, 'img/minato.png', 'Si Kilat Kuning Konoha.')"><i class="fas fa-shopping-cart"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-img"><img src="img/minion.png" alt="Minion"></div>
+                <div class="menu-info">
+                    <h3>Minion</h3>
+                    <p class="desc">Makhluk kuning kecil pecinta pisang yang lucu dan menggemaskan.</p>
+                    <div class="stars">★★★★★</div>
+                    <div class="price-action">
+                        <span class="price">Rp20.000</span>
+                        <button class="add-btn" onclick="openProductModal('Minion', 20000, 'img/minion.png', 'Pecinta pisang lucu.')"><i class="fas fa-shopping-cart"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-img"><img src="img/nami.png" alt="Nami"></div>
+                <div class="menu-info">
+                    <h3>Nami</h3>
+                    <p class="desc">Navigator kru Topi Jerami yang cerdas, cantik, dan ahli cuaca.</p>
+                    <div class="stars">★★★★★</div>
+                    <div class="price-action">
+                        <span class="price">Rp20.000</span>
+                        <button class="add-btn" onclick="openProductModal('Nami', 20000, 'img/nami.png', 'Navigator Topi Jerami.')"><i class="fas fa-shopping-cart"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-img"><img src="img/sakura.png" alt="Haruno Sakura"></div>
+                <div class="menu-info">
+                    <h3>Haruno Sakura</h3>
+                    <p class="desc">Kunoichi medis terkuat dengan pukulan bertenaga monster.</p>
+                    <div class="stars">★★★★★</div>
+                    <div class="price-action">
+                        <span class="price">Rp20.000</span>
+                        <button class="add-btn" onclick="openProductModal('Haruno Sakura', 20000, 'img/sakura.png', 'Ninja medis terkuat.')"><i class="fas fa-shopping-cart"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-img"><img src="img/panda.png" alt="Cute Panda"></div>
+                <div class="menu-info">
+                    <h3>Cute Panda</h3>
+                    <p class="desc">Hewan lucu hitam putih yang menggemaskan. Cocok untuk pajangan meja.</p>
+                    <div class="stars">★★★★★</div>
+                    <div class="price-action">
+                        <span class="price">Rp20.000</span>
+                        <button class="add-btn" onclick="openProductModal('Cute Panda', 20000, 'img/panda.png', 'Panda lucu menggemaskan.')"><i class="fas fa-shopping-cart"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-img"><img src="img/robot.png" alt="Mecha Robot"></div>
+                <div class="menu-info">
+                    <h3>Mecha Robot</h3>
+                    <p class="desc">Robot futuristik dengan detail mesin yang keren dan kokoh.</p>
+                    <div class="stars">★★★★★</div>
+                    <div class="price-action">
+                        <span class="price">Rp20.000</span>
+                        <button class="add-btn" onclick="openProductModal('Mecha Robot', 20000, 'img/robot.png', 'Robot futuristik keren.')"><i class="fas fa-shopping-cart"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="pagination" class="pagination-container"></div>
+    </section>
+
+    <section class="team" id="team">
+        <h2 class="section-title" style="color:white">Team Kami</h2>
+        <div class="team-grid">
+            <div class="team-member"><div class="member-photo"><img src="img/yuda.jpeg" alt="Yuda"></div><h3>Yuda Fuji H.</h3><p>Marketing Strategist</p></div>
+            <div class="team-member"><div class="member-photo"><img src="img/yudhis.jpeg" alt="Yudhistira"></div><h3>Yudhistira Mahendra H.</h3><p>Creative Designer</p></div>
+            <div class="team-member"><div class="member-photo"><img src="img/rehan.jpeg" alt="Raihan"></div><h3>M. Raihan Naufal</h3><p>Lead Developer</p></div>
+            <div class="team-member"><div class="member-photo"><img src="img/wafiq.jpeg" alt="Wafiq"></div><h3>Wafiq Febrian P.</h3><p>Master Builder</p></div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <h2 class="section-title">Hubungi Kami</h2>
+        <div class="contact-container">
+            <a href="https://wa.me/6287884996054" target="_blank" class="contact-card wa">
+                <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.2 53.7 21.8 57.4 2.6 3.7 37.8 57.7 91.5 80.8 12.8 5.5 22.8 8.7 30.6 11.1 12.8 4 24.6 3.5 33.9 2.1 10.3-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+                <h3>WhatsApp</h3><p>Chat Admin</p>
+            </a>
+            <a href="https://instagram.com/paperblox.id" target="_blank" class="contact-card ig">
+                <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+                <h3>Instagram</h3><p>Follow Us</p>
+            </a>
+            <a href="https://tiktok.com/@paperblox.id" target="_blank" class="contact-card tt">
+                <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/></svg>
+                <h3>TikTok</h3><p>Watch Videos</p>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <h2>PAPERBLOX.ID</h2>
+        <p>© 2026 PAPERBLOX.ID - All Rights Reserved</p>
+    </footer>
+
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeProductModal()">&times;</button>
+            <img id="modalImg" src="" alt="">
+            <h2 id="modalName"></h2>
+            <p id="modalDesc"></p>
+            <p class="modal-price" id="modalPrice"></p>
+            <button class="btn" id="addToCartBtn">Tambah ke Keranjang</button>
+        </div>
+    </div>
+
+    <div class="cart-overlay" id="cartOverlay">
+        <div class="cart-popup">
+            
+            <div class="cart-header">
+                <h2>Keranjang Pesanan</h2>
+                <button class="modal-close" onclick="toggleCart()" style="position:static; font-size: 24px;">&times;</button>
+            </div>
+            
+            <div class="cart-scroll-area">
+                <div id="cartItemsContainer"></div>
+                <div class="cart-total" id="cartTotalDisplay">Total : Rp0</div>
+                
+                <div class="buyer-form">
+                    <h3>Detail Pembeli</h3>
+                    <div class="form-group">
+                        <label>Nama</label>
+                        <input type="text" id="buyerName" placeholder="Nama Anda" oninput="this.value = this.value.replace(/[^a-zA-Z\s.]/g, '')">
+                    </div>
+                    <div class="form-group">
+                        <label>Alamat</label>
+                        <textarea id="buyerAddress" placeholder="Alamat Pengiriman / Catatan" rows="2"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>No Hp</label>
+                        <input type="tel" id="buyerPhone" placeholder="Contoh: 08123456789" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                    </div>
+                    <button class="checkout-btn active" onclick="checkoutWA()">Pesan Sekarang</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            effect: "coverflow", grabCursor: true, centeredSlides: true, slidesPerView: "auto", loop: true,
+            coverflowEffect: { rotate: 50, stretch: 0, depth: 100, modifier: 1, slideShadows: true },
+            pagination: { el: ".swiper-pagination", clickable: true }, autoplay: { delay: 2500, disableOnInteraction: false },
+        });
+
+        function updateClock() {
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            document.getElementById('digitalClock').textContent = now.toLocaleDateString('id-ID', options);
+        }
+        setInterval(updateClock, 1000); updateClock(); 
+
+        function toggleMenu() { document.getElementById("navLinks").classList.toggle("active"); }
+
+        function toggleSearch() {
+            const searchBar = document.getElementById("searchBar");
+            const searchInput = document.getElementById("searchInput");
+            if (searchBar.style.display === "block") {
+                searchBar.style.display = "none"; searchInput.value = ""; filterProducts(""); 
+            } else {
+                searchBar.style.display = "block"; searchInput.focus(); 
+                document.getElementById("pemesanan").scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        document.getElementById("searchInput").addEventListener("input", function(e) { filterProducts(e.target.value.toLowerCase()); });
+
+        function filterProducts(term) {
+            const cards = Array.from(document.querySelectorAll(".menu-card"));
+            const pagination = document.getElementById("pagination");
+
+            if(term === "") {
+                // Jika search kosong, kembalikan ke mode pagination normal
+                displayProducts(currentPage);
+                pagination.style.display = "flex";
+            } else {
+                // Jika sedang search, tampilkan semua yang cocok & sembunyikan pagination
+                cards.forEach(card => {
+                    const title = card.querySelector("h3").textContent.toLowerCase();
+                    if(title.startsWith(term)) {
+                        card.style.display = "flex";
+                    } else {
+                        card.style.display = "none";
+                    }
+                });
+                pagination.style.display = "none";
+            }
+        }
+
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        let tempProduct = null;
+
+        // --- PAGINATION LOGIC START ---
+        const itemsPerPage = 8;
+        let currentPage = 1;
+        const allCards = Array.from(document.querySelectorAll(".menu-card"));
+
+        document.addEventListener("DOMContentLoaded", function() { 
+            updateCartUI(); 
+            setupPagination();
+            displayProducts(1);
+        });
+
+        function displayProducts(page) {
+            const start = (page - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            
+            allCards.forEach((card, index) => {
+                if (index >= start && index < end) {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+            updatePaginationButtons(page);
+        }
+
+        function setupPagination() {
+            const paginationContainer = document.getElementById("pagination");
+            const totalPages = Math.ceil(allCards.length / itemsPerPage);
+            paginationContainer.innerHTML = "";
+
+            for (let i = 1; i <= totalPages; i++) {
+                const btn = document.createElement("button");
+                btn.innerText = i;
+                btn.classList.add("page-btn");
+                if (i === 1) btn.classList.add("active");
+                btn.addEventListener("click", () => {
+                    currentPage = i;
+                    displayProducts(i);
+                    // Opsional: Scroll sedikit ke atas grid saat ganti halaman
+                    document.getElementById("pemesanan").scrollIntoView({ behavior: "smooth" });
+                });
+                paginationContainer.appendChild(btn);
+            }
+        }
+
+        function updatePaginationButtons(page) {
+            const btns = document.querySelectorAll(".page-btn");
+            btns.forEach(btn => {
+                btn.classList.remove("active");
+                if (parseInt(btn.innerText) === page) {
+                    btn.classList.add("active");
+                }
+            });
+        }
+        // --- PAGINATION LOGIC END ---
+
+        function openProductModal(name, price, img, desc) {
+            tempProduct = { name: name, price: price, desc: desc, img: img, qty: 1 };
+            document.getElementById("modalImg").src = tempProduct.img;
+            document.getElementById("modalName").textContent = tempProduct.name;
+            document.getElementById("modalDesc").textContent = tempProduct.desc;
+            document.getElementById("modalPrice").textContent = "Rp" + tempProduct.price.toLocaleString('id-ID');
+            document.getElementById("productModal").style.display = "flex";
+        }
+
+        function closeProductModal() { document.getElementById("productModal").style.display = "none"; }
+
+        function saveCart() { localStorage.setItem("cart", JSON.stringify(cart)); updateCartUI(); }
+
+        // --- ADD TO CART TANPA POPUP (REVISI BENAR) ---
+        document.getElementById("addToCartBtn").addEventListener("click", () => {
+            const existingItem = cart.find(item => item.name === tempProduct.name);
+            if (existingItem) { existingItem.qty += 1; } else { cart.push(tempProduct); }
+            
+            saveCart(); 
+            closeProductModal();
+            
+            // Baris alert("Produk berhasil...") SAYA HAPUS agar tidak ada popup
+            // Jika ingin otomatis buka keranjang setelah add, hilangkan // di bawah:
+            // toggleCart(); 
+        });
+
+        const cartOverlay = document.getElementById("cartOverlay");
+        const openCartBtn = document.getElementById("openCartBtn");
+        openCartBtn.addEventListener("click", toggleCart);
+
+        function toggleCart() {
+            const nameInput = document.getElementById("buyerName");
+            const addressInput = document.getElementById("buyerAddress");
+            const phoneInput = document.getElementById("buyerPhone");
+
+            if (cartOverlay.style.display === "flex") {
+                cartOverlay.style.display = "none";
+                // Form TIDAK di-reset saat tutup
+            } else {
+                cartOverlay.style.display = "flex"; 
+                // Form HANYA di-reset jika keranjang kosong
+                if (cart.length === 0) {
+                    nameInput.value = ""; 
+                    addressInput.value = ""; 
+                    phoneInput.value = "";
+                }
+                renderCartItems();
+            }
+        }
+
+        cartOverlay.addEventListener("click", (e) => { if (e.target === cartOverlay) toggleCart(); });
+
+        function updateCartUI() {
+            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById("cartCount").textContent = totalQty;
+            renderCartItems();
+        }
+
+        function renderCartItems() {
+            const container = document.getElementById("cartItemsContainer");
+            container.innerHTML = "";
+            let totalPrice = 0;
+
+            if (cart.length === 0) {
+                container.innerHTML = "<p style='text-align:center; color:#888;'>Keranjang masih kosong.</p>";
+            } else {
+                cart.forEach((item, index) => {
+                    const itemTotal = item.price * item.qty;
+                    totalPrice += itemTotal;
+                    
+                    const div = document.createElement("div");
+                    div.className = "cart-item";
+                    div.innerHTML = `
+                        <img src="${item.img}" alt="${item.name}">
+                        <div class="cart-item-details">
+                            <span class="cart-item-title">${item.name}</span>
+                            <div class="cart-item-calc">
+                                Rp${item.price.toLocaleString('id-ID')} x 
+                                <span class="qty-control">
+                                    <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
+                                    <span class="qty-val">${item.qty}</span>
+                                    <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
+                                </span>
+                            </div>
+                        </div>
+                        <div style="font-weight:bold;">= Rp${itemTotal.toLocaleString('id-ID')}</div>
+                    `;
+                    container.appendChild(div);
+                });
+            }
+            document.getElementById("cartTotalDisplay").textContent = "Total : Rp" + totalPrice.toLocaleString('id-ID');
+        }
+
+        // --- HAPUS ITEM TANPA TANYA (REVISI BENAR) ---
+        function changeQty(index, change) {
+            if (cart[index].qty + change <= 0) {
+                // Langsung hapus tanpa confirm()
+                cart.splice(index, 1);
+            } else { 
+                cart[index].qty += change; 
+            }
+            
+            saveCart();
+            
+            // Cek jika keranjang jadi kosong setelah dihapus, reset form
+            if (cart.length === 0) {
+                document.getElementById("buyerName").value = "";
+                document.getElementById("buyerAddress").value = "";
+                document.getElementById("buyerPhone").value = "";
+            }
+        }
+
+        function checkoutWA() {
+            if (cart.length === 0) { alert("Keranjang kosong!"); return; }
+            
+            const nameInput = document.getElementById("buyerName");
+            const addressInput = document.getElementById("buyerAddress");
+            const phoneInput = document.getElementById("buyerPhone");
+            const name = nameInput.value;
+            const address = addressInput.value;
+            const phone = phoneInput.value;
+
+            if (!name || !address || !phone) { alert("Mohon lengkapi Nama, Alamat, dan No HP."); return; }
+            if (/\d/.test(name)) { alert("Nama tidak boleh mengandung angka!"); return; }
+            if (/[^0-9]/.test(phone)) { alert("Nomor HP harus berupa angka saja!"); return; }
+
+            let message = `Halo Paperblox, saya ingin memesan:\n\n`;
+            let grandTotal = 0;
+
+            cart.forEach(item => {
+                const subtotal = item.price * item.qty;
+                grandTotal += subtotal;
+                message += `- *${item.name}* (${item.qty}x) = Rp${subtotal.toLocaleString('id-ID')}\n`;
+            });
+
+            message += `\n*TOTAL: Rp${grandTotal.toLocaleString('id-ID')}*\n\n`;
+            message += `Detail Pembeli:\nNama: ${name}\nAlamat/Catatan: ${address}\nNo HP: ${phone}`;
+
+            const encodedMsg = encodeURIComponent(message);
+            const waNumber = "6287884996054"; 
+            window.open(`https://wa.me/${waNumber}?text=${encodedMsg}`, "_blank");
+
+            cart = []; saveCart(); toggleCart(); 
+        }
+
+        // --- KLIK DI LUAR UNTUK MENUTUP SEARCH (VERSI FIX) ---
+        document.addEventListener('click', function(event) {
+            const searchBar = document.getElementById("searchBar");
+            const searchBtn = document.getElementById("searchBtn");
+
+            // 1. Cek apakah search bar sedang terbuka?
+            if (searchBar.style.display === "block") {
+                
+                // 2. Cek apakah yang diklik ITU BUKAN bagian dalam kotak search?
+                // 3. Cek apakah yang diklik ITU BUKAN tombol kaca pembesar?
+                if (!searchBar.contains(event.target) && !searchBtn.contains(event.target)) {
+                    
+                    // Jika diklik di luar area search, maka tutup paksa
+                    toggleSearch(); 
+                }
+            }
+        });
+    </script>
+</body>
+</html>
