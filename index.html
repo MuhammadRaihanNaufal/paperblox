@@ -415,6 +415,11 @@
             
             .cart-popup { width: 95%; max-height: 75vh; }
         }
+
+        /* TAMBAHAN AGAR SWIPER JALAN MULUS TANPA HENTI */
+        .swiper-wrapper {
+            transition-timing-function: linear !important;
+        }
     </style>
 </head>
 
@@ -850,8 +855,8 @@
     </section>
 
     <footer>
-        <h2>PAPERBLOX.ID</h2>
-        <p>© 2026 PAPERBLOX.ID - All Rights Reserved</p>
+        <h2>PAPERBLOX</h2>
+        <p>© 2026 PAPERBLOX - All Rights Reserved</p>
     </footer>
 
     <div class="modal" id="productModal">
@@ -902,10 +907,35 @@
 
     <script>
         var swiper = new Swiper(".mySwiper", {
-            effect: "coverflow", grabCursor: true, centeredSlides: true, slidesPerView: "auto", loop: true,
-            coverflowEffect: { rotate: 50, stretch: 0, depth: 100, modifier: 1, slideShadows: true },
-            pagination: { el: ".swiper-pagination", clickable: true }, autoplay: { delay: 1500, disableOnInteraction: false },
-            speed: 600,
+            effect: "coverflow",
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: "auto",
+            coverflowEffect: {
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+            },
+            loop: true,
+            
+            // --- SETTINGAN GERAK TERUS (CONTINUOUS) ---
+            speed: 3000, // Kecepatan mengalir (3000ms).
+                         // Jika ingin LEBIH CEPAT, kurangi angkanya (misal: 2000).
+                         // Jika ingin LEBIH PELAN, tambah angkanya (misal: 5000).
+            
+            autoplay: {
+                delay: 0,                // Hapus jeda diam (langsung jalan terus)
+                disableOnInteraction: false, 
+                pauseOnMouseEnter: false, // Tetap jalan walau mouse nempel
+            },
+            // ------------------------------------------
+
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
             navigation: {
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
