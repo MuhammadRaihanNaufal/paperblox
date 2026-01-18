@@ -419,10 +419,10 @@
             .cart-popup { width: 95%; max-height: 75vh; }
         }
 
-        /* --- TAMPILAN HP: PAKET FINAL (PEMESANAN 2 KOLOM + KONTAK SEGITIGA) --- */
+        /* --- TAMPILAN HP: PAKET FINAL & SUDAH DIPERBAIKI --- */
         @media only screen and (max-width: 768px) {
             
-            /* 1. BAGIAN ABOUT (2x2) */
+            /* 1. BAGIAN ABOUT (Tetap Aman) */
             .features-grid { 
                 grid-template-columns: repeat(2, 1fr) !important; 
                 gap: 10px !important;
@@ -432,19 +432,22 @@
             .feature-card h3 { font-size: 1rem !important; }
             .feature-card p { font-size: 0.8rem !important; }
 
-            /* 2. BAGIAN PEMESANAN (2 Kolom + Deskripsi Aman) */
+            /* 2. BAGIAN PEMESANAN (Fixed: Produk Bisa Hilang/Pagination Jalan) */
             .menu-grid {
                 display: grid !important;
-                grid-template-columns: 1fr 1fr !important; /* Wajib 2 kolom */
+                grid-template-columns: 1fr 1fr !important; 
                 gap: 10px !important; 
             }
 
             .menu-card {
-                display: flex !important;
+                /* PERBAIKAN PENTING: */
+                /* Jangan pakai !important pada display, agar JS bisa menyembunyikan kartu */
+                display: flex; 
+                
                 flex-direction: column !important;
                 justify-content: space-between !important;
                 height: auto !important;
-                min-height: 280px !important; /* Menjaga tinggi kartu seragam */
+                min-height: 280px !important; 
             }
 
             .menu-card .menu-img {
@@ -455,21 +458,15 @@
             .menu-card .menu-info { padding: 8px !important; }
             .menu-card h3 { font-size: 0.9rem !important; margin-bottom: 3px !important; }
 
-            /* Deskripsi tetap ada, max 3 baris */
+            /* Deskripsi: Versi Aman (Tanpa Garis Merah Error) */
             .menu-card .desc {
                 display: block !important;
                 font-size: 0.7rem !important; 
-                line-height: 1.3 !important; /* Jarak antar baris */
-                
-                /* RUMUS MATEMATIKA: 
-                   Tinggi Maksimal = font-size x line-height x jumlah baris
-                   0.7rem x 1.3 x 3 baris = 2.73rem */
+                line-height: 1.3 !important;
+                /* Membatasi tinggi teks secara manual agar rapi 3 baris */
                 height: 2.73rem !important; 
-                
-                overflow: hidden !important; /* Sembunyikan sisa teks */
+                overflow: hidden !important; 
                 margin-bottom: 5px !important;
-                
-                /* Trik agar huruf tidak terpotong setengah di bawah */
                 white-space: normal !important;
             }
             
@@ -477,7 +474,7 @@
             .menu-card .price { font-size: 0.85rem !important; }
             .menu-card .add-btn { width: 28px !important; height: 28px !important; font-size: 0.8rem !important; }
 
-            /* 3. BAGIAN TEAM (2x2) */
+            /* 3. BAGIAN TEAM (Tetap Aman) */
             .team-grid {
                 grid-template-columns: repeat(2, 1fr) !important;
                 gap: 10px !important;
@@ -485,19 +482,23 @@
             .member-photo { width: 70px !important; height: 70px !important; margin-bottom: 8px !important; }
             .team-member { padding: 10px !important; }
 
-            /* 4. HUBUNGI KAMI (WA & IG Atas, TikTok Tengah Bawah) */
+            /* 4. HUBUNGI KAMI (Fixed: Layout Segitiga) */
             .contact-container {
                 display: flex !important;
+                
+                /* PERBAIKAN PENTING: Memaksa baris ke samping, bukan ke bawah */
+                flex-direction: row !important; 
+                
                 flex-wrap: wrap !important;     
-                justify-content: center !important; /* Mantra agar TikTok ke tengah */
+                justify-content: center !important; 
                 gap: 10px !important;
             }
 
             .contact-card {
-                /* Kita pakai 48% agar muat 2 kotak per baris dengan aman */
+                /* Lebar 48% agar muat 2 kotak berdampingan */
+                width: 48% !important; 
                 flex: 0 0 48% !important; 
                 max-width: 48% !important;
-                width: 48% !important;
                 
                 padding: 15px 5px !important;
                 margin: 0 !important;
@@ -509,7 +510,7 @@
             }
             .contact-card h3 { font-size: 0.9rem !important; }
             .contact-card p { font-size: 0.75rem !important; }
-        }       
+        }      
     </style>
 </head>
 
