@@ -423,6 +423,105 @@
         .swiper-wrapper {
             transition-timing-function: linear !important;
         }
+
+        /* --- TAMPILAN HP: MODE HEMAT SCROLL (GRID 2 KOLOM) --- */
+        @media (max-width: 768px) {
+            
+            /* 1. BAGIAN ABOUT (Kenapa Paperblox) - Class asli: .features-grid */
+            .features-grid { 
+                grid-template-columns: repeat(2, 1fr) !important; 
+                gap: 10px !important;
+            }
+            .feature-card {
+                padding: 15px !important; /* Perkecil padding biar muat */
+            }
+            /* Kecilkan icon emoji di about */
+            .feature-card div {
+                font-size: 2rem !important; 
+                margin-bottom: 5px !important;
+            }
+            .feature-card h3 { font-size: 1rem !important; }
+            .feature-card p { font-size: 0.8rem !important; }
+
+            /* 2. BAGIAN PEMESANAN (Produk) - Class asli: .menu-grid */
+            .menu-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 10px !important; 
+            }
+
+            /* Penyesuaian Kartu Produk */
+            .menu-card .menu-img {
+                height: 120px !important; /* Perkecil area gambar */
+                padding: 10px !important;
+            }
+            .menu-card .menu-info {
+                padding: 10px !important;
+            }
+            .menu-card h3 {
+                font-size: 0.9rem !important; /* Judul produk lebih kecil */
+                margin-bottom: 5px !important;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .menu-card .desc, .menu-card .stars {
+                display: none !important; /* Sembunyikan deskripsi & bintang di HP biar ringkas */
+            }
+            .menu-card .price {
+                font-size: 0.85rem !important;
+            }
+            .menu-card .add-btn {
+                width: 30px !important;
+                height: 30px !important;
+                font-size: 0.8rem !important;
+            }
+
+            /* 3. BAGIAN TEAM - Class asli: .team-grid */
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 15px !important;
+            }
+            
+            .member-photo {
+                width: 80px !important; /* Foto team diperkecil */
+                height: 80px !important;
+                margin-bottom: 10px !important;
+            }
+            .team-member {
+                padding: 15px !important;
+            }
+
+            /* 4. HUBUNGI KAMI (LAYOUT SEGITIGA: WA & IG DI ATAS, TIKTOK DI TENGAH) */
+            .contact-container {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                justify-content: center !important; /* Mantra agar baris kedua otomatis ke tengah */
+                gap: 10px !important;
+            }
+
+            .contact-card {
+                /* Rumus: Lebar 50% dikurangi setengah jarak gap (5px) */
+                width: calc(50% - 5px) !important; 
+                flex: 0 0 calc(50% - 5px) !important;
+                
+                padding: 15px !important; /* Padding disesuaikan agar rapi */
+                margin: 0 !important;
+            }
+
+            .contact-icon {
+                width: 35px !important;
+                height: 35px !important;
+                font-size: 1.2rem !important;
+                margin-bottom: 8px !important;
+            }
+            
+            .contact-card h3 {
+                font-size: 0.9rem !important;
+            }
+            .contact-card p {
+                font-size: 0.8rem !important;
+            }
+        }
     </style>
 </head>
 
