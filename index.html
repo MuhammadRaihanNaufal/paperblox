@@ -496,24 +496,22 @@
             }
 
             .contact-card {
-                /* Baris 1: WA & IG (Lebar 48%) */
-                width: 48% !important; 
-                flex: 0 0 48% !important; 
-                max-width: 48% !important;
+                /* Gunakan rumus ini agar ukurannya akurat dikurangi gap */
+                width: calc(50% - 10px) !important; 
+                flex: 0 0 calc(50% - 10px) !important;
+                
+                max-width: none !important; /* Hapus max-width agar tidak membatasi */
                 padding: 15px 5px !important;
                 margin: 0 !important;
             }
 
-            /* KHUSUS TIKTOK (Kotak ke-3) */
+            /* REVISI TIKTOK: Hapus width, sisakan margin-top saja */
             .contact-card:nth-child(3) {
-                /* Tambahkan jarak atas biar tidak mepet */
-                margin-top: 15px !important; 
+                margin-top: 15px !important; /* Jarak ke atas */
                 
-                /* Opsional: TikTok dibuat agak lebar sedikit biar cantik (60%) */
-                /* Jika ingin sama ukurannya dengan atas, ubah jadi 48% */
-                width: 48% !important; 
-                flex: 0 0 60% !important; 
-                max-width: 60% !important;
+                /* Hapus atau remark bagian width di sini, agar dia ikut settingan calc di atas */
+                /* width: 48% !important;  <-- HAPUS INI */
+                /* flex: 0 0 48% !important; <-- HAPUS INI */
             }
 
             .contact-icon {
