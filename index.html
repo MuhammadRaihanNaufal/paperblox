@@ -486,34 +486,40 @@
             .member-photo { width: 70px !important; height: 70px !important; margin-bottom: 8px !important; }
             .team-member { padding: 10px !important; }
 
-            /* 4. HUBUNGI KAMI (Fixed: Layout Segitiga) */
+            /* 4. HUBUNGI KAMI (REVISI: Jarak TikTok Diperlebar) */
             .contact-container {
                 display: flex !important;
-                
-                /* PERBAIKAN PENTING: Memaksa baris ke samping, bukan ke bawah */
                 flex-direction: row !important; 
-                
                 flex-wrap: wrap !important;     
                 justify-content: center !important; 
-                gap: 10px !important;
+                gap: 10px !important; /* Jarak antar kotak */
             }
 
             .contact-card {
-                /* Lebar 48% agar muat 2 kotak berdampingan */
+                /* Baris 1: WA & IG (Lebar 48%) */
                 width: 48% !important; 
                 flex: 0 0 48% !important; 
                 max-width: 48% !important;
-                
                 padding: 15px 5px !important;
                 margin: 0 !important;
+            }
+
+            /* KHUSUS TIKTOK (Kotak ke-3) */
+            .contact-card:nth-child(3) {
+                /* Tambahkan jarak atas biar tidak mepet */
+                margin-top: 15px !important; 
+                
+                /* Opsional: TikTok dibuat agak lebar sedikit biar cantik (60%) */
+                /* Jika ingin sama ukurannya dengan atas, ubah jadi 48% */
+                width: 48% !important; 
+                flex: 0 0 60% !important; 
+                max-width: 60% !important;
             }
 
             .contact-icon {
                 width: 35px !important; height: 35px !important;
                 font-size: 1.2rem !important; margin-bottom: 5px !important;
             }
-            .contact-card h3 { font-size: 0.9rem !important; }
-            .contact-card p { font-size: 0.75rem !important; }
         }      
     </style>
 </head>
