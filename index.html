@@ -203,7 +203,9 @@
         .contact-card { background: var(--white); padding: 30px; border-radius: 20px; width: 250px; text-decoration: none; color: var(--primary); transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; border: 2px solid transparent; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         body.dark-mode .contact-card { background: var(--bg); border-color: #333; }
         .contact-icon { width: 60px; height: 60px; margin-bottom: 15px; fill: var(--primary); transition: 0.3s; }
-        body.dark-mode .contact-icon { fill: var(--white); }
+        body.dark-mode .contact-card.wa .contact-icon { fill: var(--wa); }
+        body.dark-mode .contact-card.ig .contact-icon { fill: var(--ig); }
+        body.dark-mode .contact-card.tt .contact-icon { fill: var(--tt); }
         .contact-card:hover { transform: translateY(-10px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
         .contact-card.wa:hover { border-color: var(--wa); } .contact-card.wa:hover .contact-icon { fill: var(--wa); }
         .contact-card.ig:hover { border-color: var(--ig); } .contact-card.ig:hover .contact-icon { fill: var(--ig); }
@@ -535,10 +537,27 @@
         // --- JAM DIGITAL ---
         function updateClock() {
             const now = new Date();
-            const timeString = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-            document.getElementById('digitalClock').innerText = timeString;
+            
+            // Mengambil Jam, Menit, Detik
+            const timeString = now.toLocaleTimeString('id-ID', { 
+                hour: '2-digit', 
+                minute: '2-digit', 
+                second: '2-digit' 
+            });
+
+            // Mengambil Hari, Tanggal, Bulan, Tahun
+            const dateString = now.toLocaleDateString('id-ID', { 
+                weekday: 'long', 
+                day: 'numeric', 
+                month: 'long', 
+                year: 'numeric' 
+            });
+
+            // Menggabungkan Tanggal dan Waktu
+            document.getElementById('digitalClock').innerText = `${dateString} | ${timeString}`;
         }
-        setInterval(updateClock, 1000); updateClock();
+        setInterval(updateClock, 1000); 
+        updateClock();
 
         // --- HAMBURGER MENU ---
         function toggleMenu() {
