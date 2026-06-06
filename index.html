@@ -8,38 +8,51 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
-        /* --- GLOBAL RESET & DARK MODE VARIABLES --- */
+        /* --- GLOBAL RESET & VARIABLES --- */
         * { box-sizing: border-box; }
 
         :root {
-            --primary: #2C3E50; --accent: #5DADE2;  
-            --bg: #F4F6F7; --white: #FFFFFF;
+            --primary: #2C3E50; 
+            --accent: #5DADE2;  
+            --bg: #F4F6F7;      
+            --white: #FFFFFF;
             --nav-height: 70px;
-            --wa: #25D366; --wa-dark: #1da851;
-            --ig: #E1306C; --tt: #000000;
+            --wa: #25D366;
+            --wa-dark: #1da851;
+            --ig: #E1306C;
+            --tt: #000000;
         }
 
         body.dark-mode {
-            --primary: #F4F6F7; --bg: #121212;      
-            --white: #1E1E1E; --tt: #FFFFFF; 
+            --primary: #F4F6F7; 
+            --bg: #121212;      
+            --white: #1E1E1E;
+            --tt: #FFFFFF; 
         }
 
-        html { scroll-behavior: smooth; scroll-padding-top: var(--nav-height); width: 100%; overflow-x: hidden; }
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--nav-height);
+            width: 100%;
+            overflow-x: hidden;
+        }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0; padding: 0;
-            background-color: var(--bg); color: var(--primary);
-            line-height: 1.6; width: 100%; overflow-x: hidden;
+            background-color: var(--bg);
+            color: var(--primary);
+            line-height: 1.6;
+            width: 100%;
+            overflow-x: hidden;
             padding-top: var(--nav-height);
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        /* --- [FITUR 7] PRELOADER CSS --- */
+        /* --- PRELOADER --- */
         #preloader {
             position: fixed; inset: 0; background: var(--bg); z-index: 100000; 
             display: flex; flex-direction: column; align-items: center; justify-content: center; 
@@ -52,19 +65,19 @@
         }
         @keyframes spin { 100% { transform: rotate(360deg); } }
 
-        /* --- [FITUR 6] BACK TO TOP CSS --- */
+        /* --- BACK TO TOP --- */
         .back-to-top {
             position: fixed; bottom: 30px; right: 30px; 
             background: var(--accent); color: white; 
             width: 50px; height: 50px; border-radius: 50%; border: none; 
             font-size: 1.2rem; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.3); 
             z-index: 10000; opacity: 0; visibility: hidden; transform: translateY(20px); 
-            transition: all 0.3s ease;
+            transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;
         }
         .back-to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
         .back-to-top:hover { background: var(--primary); transform: translateY(-5px); }
 
-        /* --- [FITUR 2] TOAST NOTIFICATION CSS --- */
+        /* --- TOAST NOTIFICATION --- */
         .toast {
             position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%); 
             background: var(--wa); color: white; padding: 12px 25px; 
@@ -75,28 +88,178 @@
         body.dark-mode .toast { background: var(--wa-dark); }
         .toast.show { bottom: 40px; }
 
-
-        /* =========================================================
-           PASTE KODE CSS NAVBAR, HERO, FEATURES, MENU, MODAL, CART 
-           MILIKMU DI SINI (SAMA SEPERTI KODE REVISI SEBELUMNYA) 
-           ========================================================= */
-        
-        nav { background: var(--white); height: var(--nav-height); padding: 0 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); position: fixed; top: 0; left: 0; right: 0; z-index: 9999; width: 100%; transition: background-color 0.3s ease; }
-        .logo { font-weight: 800; font-size: 1.5rem; color: var(--primary); text-decoration: none; letter-spacing: 2px; }
+        /* --- NAVBAR --- */
+        nav {
+            background: var(--white); height: var(--nav-height); padding: 0 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); position: fixed; 
+            top: 0; left: 0; right: 0; z-index: 9999; width: 100%;
+            transition: background-color 0.3s ease;
+        }
+        .logo { font-weight: 800; font-size: 1.5rem; color: var(--primary); text-decoration: none; letter-spacing: 2px; z-index: 1002; }
         .nav-right-container { display: flex; align-items: center; gap: 15px; } 
         .nav-links { display: flex; align-items: center; gap: 20px; }
         .nav-links a { text-decoration: none; color: var(--primary); font-weight: 500; transition: 0.3s; }
         .nav-links a:hover { color: var(--accent); }
-        .icon-btn { background: none; border: none; cursor: pointer; font-size: 1.3rem; color: var(--primary); padding: 5px; display: flex; transition: 0.2s; }
+        .icon-btn {
+            background: none; border: none; cursor: pointer; position: relative;
+            font-size: 1.3rem; color: var(--primary); padding: 5px;
+            display: flex; align-items: center; justify-content: center; transition: transform 0.2s;
+        }
         .icon-btn:hover { color: var(--accent); transform: scale(1.1); }
-        
-        section { padding: 60px 8%; text-align: center; width: 100%; position: relative; }
+        .cart-badge {
+            position: absolute; top: -2px; right: -8px; background: #e74c3c;
+            color: white; font-size: 0.7rem; height: 18px; width: 18px;
+            display: flex; justify-content: center; align-items: center;
+            border-radius: 50%; font-weight: bold; border: 2px solid var(--white);
+        }
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; z-index: 1002; margin-left: 10px; }
+        .hamburger span { display: block; width: 25px; height: 3px; background-color: var(--primary); border-radius: 3px; transition: 0.3s; }
+
+        /* --- SEARCH BAR --- */
+        .search-bar-container {
+            position: fixed; top: var(--nav-height); left: 0; right: 0; width: 100%;
+            background: var(--white); padding: 15px 5%; box-shadow: 0 5px 10px rgba(0,0,0,0.05); 
+            z-index: 9998; display: none; border-top: 1px solid #eee; animation: slideDown 0.3s ease;
+        }
+        .search-input {
+            width: 100%; padding: 12px 20px; border: 2px solid #eee;
+            border-radius: 30px; font-size: 1rem; outline: none; transition: 0.3s;
+            background-color: var(--bg); color: var(--primary);
+        }
+        body.dark-mode .search-input { border-color: #333; }
+        .search-input:focus { border-color: var(--accent); }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- SECTION GLOBAL --- */
+        section { padding: 60px 8%; text-align: center; width: 100%; position: relative; overflow: hidden; }
         .section-title { font-size: 2.5rem; margin-bottom: 20px; position: relative; display: inline-block; }
         .section-title::after { content: ''; width: 60px; height: 4px; background: var(--accent); position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); }
-        
-        /* Dan seterusnya (CSS persis seperti balasan saya yang Dark Mode) */
-        /* ... */
+        .section-subtitle { font-size: 1.1rem; color: #7f8c8d; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.5; }
+        body.dark-mode .section-subtitle { color: #AAB7B8; }
 
+        /* --- HERO --- */
+        .hero {
+            background-color: var(--bg); 
+            background-image: linear-gradient(rgba(44, 62, 80, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(44, 62, 80, 0.05) 1px, transparent 1px), radial-gradient(circle at 80% 20%, rgba(93, 173, 226, 0.15) 0%, transparent 40%); 
+            background-size: 40px 40px, 40px 40px, 100% 100%;
+            display: flex; flex-wrap: wrap; gap: 30px; align-items: center; justify-content: center;
+            min-height: auto; padding-top: 120px; padding-bottom: 120px; position: relative; overflow: hidden;
+        }
+        body.dark-mode .hero { background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px), radial-gradient(circle at 80% 20%, rgba(93, 173, 226, 0.1) 0%, transparent 40%); }
+        .hero-content { flex: 1 1 300px; z-index: 2; }
+        .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 5px; letter-spacing: 2px; line-height: 1.2; }
+        .hero-image { flex: 1 1 300px; text-align: center; display: flex; justify-content: center; z-index: 2; }
+        .hero-image img { width: 100%; max-width: 450px; min-width: 250px; background-color: var(--white); border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); filter: contrast(1.05); transition: transform 0.3s ease; object-fit: cover; }
+        .hero-image img:hover { transform: scale(1.02); }
+        .digital-clock { font-size: 1rem; font-weight: bold; color: var(--primary); background: var(--white); padding: 10px 20px; border-radius: 8px; display: inline-block; margin-bottom: 20px; border: 2px solid var(--primary); box-shadow: 4px 4px 0px rgba(0,0,0,0.1); font-family: 'Courier New', Courier, monospace; }
+        .btn { background-color: var(--primary); color: var(--bg); padding: 15px 35px; text-decoration: none; border-radius: 30px; font-weight: bold; display: inline-block; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.2); border: 2px solid transparent; cursor: pointer; }
+        .btn:hover { background-color: transparent; color: var(--primary); border: 2px solid var(--primary); transform: translateY(-3px) scale(1.05); }
+        @media screen and (min-width: 1024px) { .hero { min-height: calc(100vh - var(--nav-height)); padding-top: 0; padding-bottom: 0; } }
+
+        /* --- FEATURES --- */
+        .features { background-color: var(--white); z-index: 10; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-top: 50px; }
+        .feature-card { padding: 40px; background: var(--bg); border-radius: 20px; }
+
+        /* --- KATALOG (SWIPER) --- */
+        .katalog { background: var(--bg); padding-top: 80px; }
+        .swiper { width: 100%; padding-top: 20px; padding-bottom: 100px; margin-top: 40px; }
+        .swiper-pagination { bottom: 10px !important; }
+        .swiper-slide { background: var(--white); width: 300px; height: 380px; border-radius: 15px; box-shadow: 0 15px 30px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .swiper-slide img { display: block; width: 100%; height: 100%; object-fit: contain; padding: 20px; mix-blend-mode: multiply; }
+        body.dark-mode .swiper-slide img { mix-blend-mode: normal; }
+
+        /* --- PEMESANAN --- */
+        .pemesanan-section { background-color: var(--white); padding-top: 80px; min-height: 500px; }
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto; }
+        .menu-card { background: var(--white); border: 1px solid #eee; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s ease; display: flex; flex-direction: column; }
+        body.dark-mode .menu-card { border-color: #333; box-shadow: 0 5px 15px rgba(0,0,0,0.4); }
+        .menu-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .menu-img { background: var(--bg); height: 200px; display: flex; align-items: center; justify-content: center; padding: 20px; cursor: pointer; }
+        .menu-img img { max-height: 100%; max-width: 100%; object-fit: contain; mix-blend-mode: multiply; }
+        body.dark-mode .menu-img img { mix-blend-mode: normal; }
+        .menu-info { padding: 20px; text-align: left; display: flex; flex-direction: column; flex-grow: 1; }
+        .menu-info h3 { font-size: 1.2rem; margin: 0 0 10px 0; color: var(--primary); }
+        .menu-info .desc { font-size: 0.9rem; color: #7f8c8d; margin-bottom: 15px; line-height: 1.4; flex-grow: 1; }
+        .stars { color: #d4af37; margin-bottom: 15px; font-size: 14px; letter-spacing: 2px; }
+        .price-action { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 15px; }
+        body.dark-mode .price-action { border-top-color: #333; }
+        .price { font-weight: bold; font-size: 1.1rem; color: var(--primary); }
+        .add-btn { background: #2c3e50; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; }
+        body.dark-mode .add-btn { background: var(--accent); color: #fff; }
+        .add-btn:hover { background: var(--accent); transform: scale(1.1); }
+
+        /* --- TEAM & CONTACT --- */
+        .team { background: #2C3E50; color: #FFFFFF; padding-top: 80px; }
+        body.dark-mode .team { background: #0b1014; }
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; justify-content: center; margin-top: 50px; }
+        .team-member { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 20px; }
+        .member-photo { width: 130px; height: 130px; border-radius: 50%; background: #fff; margin: 0 auto 20px; overflow: hidden; border: 4px solid var(--accent); }
+        .member-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+        .contact { background: var(--bg); padding-top: 80px; }
+        .contact-container { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 50px; }
+        .contact-card { background: var(--white); padding: 30px; border-radius: 20px; width: 250px; text-decoration: none; color: var(--primary); transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; border: 2px solid transparent; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        body.dark-mode .contact-card { background: var(--bg); border-color: #333; }
+        .contact-icon { width: 60px; height: 60px; margin-bottom: 15px; fill: var(--primary); transition: 0.3s; }
+        body.dark-mode .contact-icon { fill: var(--white); }
+        .contact-card:hover { transform: translateY(-10px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .contact-card.wa:hover { border-color: var(--wa); } .contact-card.wa:hover .contact-icon { fill: var(--wa); }
+        .contact-card.ig:hover { border-color: var(--ig); } .contact-card.ig:hover .contact-icon { fill: var(--ig); }
+        .contact-card.tt:hover { border-color: var(--tt); } .contact-card.tt:hover .contact-icon { fill: var(--tt); }
+
+        footer { background: #1a252f; color: #ffffff; padding: 60px 20px; text-align: center; }
+        body.dark-mode footer { background: #06090b; }
+
+        /* --- MODAL --- */
+        .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: none; justify-content: center; align-items: center; z-index: 10001; padding-top: 50px; }
+        .modal-content { position: relative; background: var(--white); padding: 30px; border-radius: 20px; max-width: 420px; width: 90%; text-align: center; animation: fadeUp 0.3s ease; box-shadow: 0 15px 50px rgba(0,0,0,0.3); }
+        .modal-content img { width: 200px; margin-bottom: 20px; border-radius: 10px; }
+        .modal-price { font-size: 1.4rem; font-weight: bold; color: var(--accent); margin: 15px 0; }
+        .modal-close { position: absolute; top: 15px; right: 18px; background: transparent; border: none; font-size: 32px; cursor: pointer; color: var(--primary); transition: transform 0.2s ease, color 0.2s ease; }
+        .modal-close:hover { color: var(--accent); transform: rotate(90deg); }
+
+        /* --- KERANJANG BELANJA --- */
+        .cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 10002; display: none; align-items: flex-start; justify-content: center; padding-top: 100px; padding-bottom: 20px; }
+        .cart-popup { background: var(--white); width: 90%; max-width: 400px; border-radius: 15px; display: flex; flex-direction: column; max-height: 80vh; box-shadow: 0 10px 40px rgba(0,0,0,0.2); animation: fadeUp 0.3s ease; overflow: hidden; }
+        .cart-header { padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed #ccc; background: var(--white); flex-shrink: 0; }
+        body.dark-mode .cart-header { border-bottom-color: #444; }
+        .cart-header h2 { margin: 0; font-size: 1.3rem; }
+        .cart-scroll-area { overflow-y: auto; padding: 20px; flex-grow: 1; }
+        .cart-item { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #f0f0f0; }
+        body.dark-mode .cart-item { border-bottom-color: #333; }
+        .cart-item img { width: 60px; height: 60px; object-fit: contain; border-radius: 10px; border: 1px solid #eee; background: var(--bg); }
+        body.dark-mode .cart-item img { border-color: #444; mix-blend-mode: normal; }
+        .cart-item-details { flex: 1; text-align: left; display: flex; flex-direction: column; }
+        .cart-item-title { font-weight: bold; font-size: 1rem; margin-bottom: 4px; line-height: 1.2; }
+        .cart-item-calc { font-size: 0.9rem; color: #7f8c8d; display: flex; align-items: center; gap: 5px; }
+        .qty-control { display: inline-flex; align-items: center; gap: 8px; margin-left: 5px; background: var(--bg); padding: 2px 5px; border-radius: 5px;}
+        .qty-btn { background: var(--primary); color: var(--bg); border: none; width: 20px; height: 20px; border-radius: 4px; cursor: pointer; font-weight: bold; display: flex; align-items: center; justify-content: center;}
+        .cart-total { text-align: center; font-size: 1.2rem; font-weight: bold; padding: 10px 0; border-top: 2px dashed var(--primary); border-bottom: 2px dashed var(--primary); margin: 15px 0; }
+        .buyer-form { text-align: left; }
+        .form-group { margin-bottom: 10px; display: grid; grid-template-columns: 80px 1fr; align-items: center; gap: 10px;}
+        .form-group input, .form-group textarea { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 5px; background: var(--bg); color: var(--primary); }
+        body.dark-mode .form-group input, body.dark-mode .form-group textarea { border-color: #444; }
+        .checkout-btn { background: #999; color: white; width: 100%; padding: 12px; border: none; border-radius: 25px; font-weight: bold; margin-top: 15px; cursor: pointer; transition: 0.3s; }
+        .checkout-btn.active { background: var(--wa); }
+        .checkout-btn.active:hover { background: var(--wa-dark); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4); }
+        @keyframes fadeUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        /* --- MEDIA QUERY RESPONSIVE --- */
+        @media screen and (max-width: 900px) {
+            .hamburger { display: flex; }
+            .nav-links {
+                position: fixed; top: var(--nav-height); right: 0; width: 70%; height: calc(100vh - var(--nav-height));
+                background-color: var(--white); flex-direction: column; align-items: center;
+                gap: 0; box-shadow: -5px 0 15px rgba(0,0,0,0.1); transform: translateX(100%);
+                transition: transform 0.3s ease-in-out; z-index: 999; overflow-y: auto;
+            }
+            .nav-links.active { transform: translateX(0%); }
+            .nav-links a { width: 100%; text-align: center; padding: 20px 0; border-bottom: 1px solid #f0f0f0; display: block; }
+            body.dark-mode .nav-links a { border-bottom-color: #333; }
+            .hero { flex-direction: column-reverse; text-align: center; padding: 40px 20px; }
+        }
     </style>
 </head>
 <body>
@@ -118,26 +281,45 @@
         <a href="#home" class="logo">PAPERBLOX</a>
         <div class="nav-right-container">
             <div class="nav-links" id="navLinks">
-                <a href="#home">Home</a>
-                <a href="#about">About</a>
-                <a href="#katalog">Katalog</a>
-                <a href="#pemesanan">Pemesanan</a>
-                <a href="#team">Team</a>
+                <a href="#home" onclick="toggleMenu()">Home</a>
+                <a href="#about" onclick="toggleMenu()">About</a>
+                <a href="#katalog" onclick="toggleMenu()">Katalog</a>
+                <a href="#pemesanan" onclick="toggleMenu()">Pemesanan</a>
+                <a href="#team" onclick="toggleMenu()">Team</a>
+                <a href="#contact" onclick="toggleMenu()">Contact</a>
             </div>
-            <button class="icon-btn" id="darkModeBtn" onclick="toggleTheme()"><i class="fas fa-moon" id="themeIcon"></i></button>
-            <button class="icon-btn" id="searchBtn"><i class="fas fa-search"></i></button>
-            <button class="icon-btn" id="openCartBtn"><i class="fas fa-shopping-cart"></i></button>
+
+            <button class="icon-btn" id="darkModeBtn" onclick="toggleTheme()" title="Toggle Dark Mode">
+                <i class="fas fa-moon" id="themeIcon"></i>
+            </button>
+
+            <button class="icon-btn" id="searchBtn" onclick="toggleSearch()">
+                <i class="fas fa-search"></i>
+            </button>
+
+            <button class="icon-btn" id="openCartBtn" onclick="toggleCart()">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-badge" id="cartCount">0</span>
+            </button>
+
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </div>
         </div>
     </nav>
+
+    <div class="search-bar-container" id="searchBar">
+        <input type="text" class="search-input" id="searchInput" placeholder="Cari nama karakter (cth: 'u' untuk Uzumaki)..." onkeyup="searchProduct()">
+    </div>
 
     <section class="hero" id="home">
         <div class="hero-content" data-aos="fade-right">
             <div id="digitalClock" class="digital-clock">Loading...</div>
             <h1>PAPERBLOX</h1>
-            <p style="font-size: 1.1rem; letter-spacing: 12px; color: var(--accent);">Lipat Rekat Rakit</p>
+            <p style="font-size: 1.1rem; letter-spacing: 12px; color: var(--accent); text-transform: uppercase; font-weight: 300; margin-bottom: 30px;">Lipat Rekat Rakit</p>
             <a href="#pemesanan" class="btn">Explore Product</a>
         </div>
-        <div class="hero-image" data-aos="fade-left">
+        <div class="hero-image" data-aos="fade-left" data-aos-delay="200">
             <img src="img/paperblox.jpg" alt="Papercraft Hero">
         </div>
     </section>
@@ -145,98 +327,415 @@
     <section class="features" id="about">
         <h2 class="section-title" data-aos="zoom-in">Kenapa Paperblox?</h2>
         <div class="features-grid">
-            <div class="feature-card" data-aos="fade-up" data-aos-delay="0"><div style="font-size: 3rem;">💰</div><h3>Ramah Kantong</h3></div>
-            <div class="feature-card" data-aos="fade-up" data-aos-delay="100"><div style="font-size: 3rem;">✂️</div><h3>Mudah & Seru</h3></div>
-            <div class="feature-card" data-aos="fade-up" data-aos-delay="200"><div style="font-size: 3rem;">🧠</div><h3>Digital Detox</h3></div>
-            <div class="feature-card" data-aos="fade-up" data-aos-delay="300"><div style="font-size: 3rem;">💎</div><h3>Kertas Premium</h3></div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="0"><div style="font-size: 3rem; margin-bottom: 15px;">💰</div><h3>Ramah Kantong</h3><p>Mulai dari <strong>Rp20.000</strong> saja.</p></div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="100"><div style="font-size: 3rem; margin-bottom: 15px;">✂️</div><h3>Mudah & Seru</h3><p>Pola presisi dengan instruksi yang jelas.</p></div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="200"><div style="font-size: 3rem; margin-bottom: 15px;">🧠</div><h3>Digital Detox</h3><p>Latih fokus lewat aktivitas <i>screen-free</i>.</p></div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="300"><div style="font-size: 3rem; margin-bottom: 15px;">💎</div><h3>Kertas Premium</h3><p>Bahan halus, warna tajam, dan awet.</p></div>
+        </div>
+    </section>
+
+    <section id="katalog" class="katalog">
+        <h2 class="section-title" data-aos="fade-up">Katalog</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Intip lebih dekat koleksi papercraft favorit yang siap menemani waktu luangmu.</p>
+        <div class="swiper mySwiper" data-aos="zoom-in" data-aos-delay="200">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="img/sasuke.png" alt="Sasuke"></div>
+                <div class="swiper-slide"><img src="img/demonslayer.png" alt="Tanjiro"></div>
+                <div class="swiper-slide"><img src="img/luffy.png" alt="Luffy"></div>
+                <div class="swiper-slide"><img src="img/minato.png" alt="Minato"></div>
+            </div>
+            <div class="swiper-pagination"></div>
         </div>
     </section>
 
     <section id="pemesanan" class="pemesanan-section">
         <h2 class="section-title" data-aos="fade-up">Pemesanan</h2>
-        
+        <p class="section-subtitle" data-aos="fade-up">Pilih karakter impianmu dan mulai petualangan merakit sekarang juga.</p>
+
         <div class="menu-grid" id="menuGrid">
             <div class="menu-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="menu-img"><img src="img/naruto.png" alt="Uzumaki Naruto"></div>
+                <div class="menu-img" onclick="openProductModal('Uzumaki Naruto', 20000, 'img/naruto.png', 'Ninja Konoha dengan semangat api dan mimpi menjadi Hokage.')"><img src="img/naruto.png" alt="Uzumaki Naruto"></div>
                 <div class="menu-info">
                     <h3>Uzumaki Naruto</h3>
-                    <p class="desc">Ninja Konoha dengan semangat api.</p>
+                    <p class="desc">Ninja Konoha dengan semangat api dan mimpi menjadi Hokage.</p>
+                    <div class="stars">★★★★★</div>
                     <div class="price-action">
                         <span class="price">Rp20.000</span>
-                        <button class="add-btn" onclick="tambahKeKeranjang('Uzumaki Naruto')"><i class="fas fa-shopping-cart"></i></button>
+                        <button class="add-btn" onclick="addToCart('Uzumaki Naruto', 20000, 'img/naruto.png')"><i class="fas fa-shopping-cart"></i></button>
                     </div>
                 </div>
             </div>
+            
+            <div class="menu-card" data-aos="fade-up" data-aos-delay="150">
+                <div class="menu-img" onclick="openProductModal('Uchiha Sasuke', 20000, 'img/sasuke.png', 'Ninja jenius dari klan Uchiha.')"><img src="img/sasuke.png" alt="Uchiha Sasuke"></div>
+                <div class="menu-info">
+                    <h3>Uchiha Sasuke</h3>
+                    <p class="desc">Ninja jenius dari klan Uchiha.</p>
+                    <div class="stars">★★★★★</div>
+                    <div class="price-action">
+                        <span class="price">Rp20.000</span>
+                        <button class="add-btn" onclick="addToCart('Uchiha Sasuke', 20000, 'img/sasuke.png')"><i class="fas fa-shopping-cart"></i></button>
+                    </div>
+                </div>
             </div>
+
+            <div class="menu-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="menu-img" onclick="openProductModal('Monkey D. Luffy', 20000, 'img/luffy.png', 'Kapten bajak laut Topi Jerami calon raja bajak laut.')"><img src="img/luffy.png" alt="Monkey D. Luffy"></div>
+                <div class="menu-info">
+                    <h3>Monkey D. Luffy</h3>
+                    <p class="desc">Kapten bajak laut Topi Jerami calon raja bajak laut.</p>
+                    <div class="stars">★★★★★</div>
+                    <div class="price-action">
+                        <span class="price">Rp20.000</span>
+                        <button class="add-btn" onclick="addToCart('Monkey D. Luffy', 20000, 'img/luffy.png')"><i class="fas fa-shopping-cart"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card" data-aos="fade-up" data-aos-delay="250">
+                <div class="menu-img" onclick="openProductModal('Tanjiro Kamado', 20000, 'img/demonslayer.png', 'Pembasmi iblis berhati lembut.')"><img src="img/demonslayer.png" alt="Tanjiro Kamado"></div>
+                <div class="menu-info">
+                    <h3>Tanjiro Kamado</h3>
+                    <p class="desc">Pembasmi iblis berhati lembut.</p>
+                    <div class="stars">★★★★★</div>
+                    <div class="price-action">
+                        <span class="price">Rp20.000</span>
+                        <button class="add-btn" onclick="addToCart('Tanjiro Kamado', 20000, 'img/demonslayer.png')"><i class="fas fa-shopping-cart"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="menu-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="menu-img" onclick="openProductModal('Namikaze Minato', 20000, 'img/minato.png', 'Hokage Keempat, Kilat Kuning dari Konoha.')"><img src="img/minato.png" alt="Namikaze Minato"></div>
+                <div class="menu-info">
+                    <h3>Namikaze Minato</h3>
+                    <p class="desc">Hokage Keempat, Kilat Kuning dari Konoha.</p>
+                    <div class="stars">★★★★★</div>
+                    <div class="price-action">
+                        <span class="price">Rp20.000</span>
+                        <button class="add-btn" onclick="addToCart('Namikaze Minato', 20000, 'img/minato.png')"><i class="fas fa-shopping-cart"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
+
+    <section class="team" id="team">
+        <h2 class="section-title" style="color:white" data-aos="fade-up">Team Kami</h2>
+        <div class="team-grid">
+            <div class="team-member" data-aos="zoom-in" data-aos-delay="0"><div class="member-photo"><img src="img/yuda.jpeg" alt="Yuda"></div><h3>Yuda Fuji H.</h3><p>Marketing Strategist</p></div>
+            <div class="team-member" data-aos="zoom-in" data-aos-delay="100"><div class="member-photo"><img src="img/rehan.jpeg" alt="Raihan"></div><h3>M. Raihan Naufal</h3><p>Lead Developer</p></div>
+            <div class="team-member" data-aos="zoom-in" data-aos-delay="200"><div class="member-photo"><img src="img/wafiq.jpeg" alt="Wafiq"></div><h3>Wafiq Febrian P.</h3><p>Master Builder</p></div>
+            <div class="team-member" data-aos="zoom-in" data-aos-delay="300"><div class="member-photo"><img src="img/rifki.jpg" alt="Rifki"></div><h3>M. Rifki Hendarto</h3><p>Master Builder</p></div>
+            <div class="team-member" data-aos="zoom-in" data-aos-delay="400"><div class="member-photo"><img src="img/yudhis.jpeg" alt="Yudhistira"></div><h3>Yudhistira Mahendra H.</h3><p>Creative Designer</p></div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <h2 class="section-title" data-aos="fade-up">Hubungi Kami</h2>
+        <div class="contact-container">
+            <a href="https://wa.me/6287884996054" target="_blank" class="contact-card wa" data-aos="fade-up" data-aos-delay="0">
+                <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.2 53.7 21.8 57.4 2.6 3.7 37.8 57.7 91.5 80.8 12.8 5.5 22.8 8.7 30.6 11.1 12.8 4 24.6 3.5 33.9 2.1 10.3-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+                <h3>WhatsApp</h3><p>Chat Admin</p>
+            </a>
+            <a href="#" target="_blank" class="contact-card ig" data-aos="fade-up" data-aos-delay="100">
+                <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+                <h3>Instagram</h3><p>@paperblox</p>
+            </a>
+            <a href="#" target="_blank" class="contact-card tt" data-aos="fade-up" data-aos-delay="200">
+                <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/></svg>
+                <h3>TikTok</h3><p>@paperblox.id</p>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <h2>PAPERBLOX</h2>
+        <p>© 2026 PAPERBLOX - All Rights Reserved</p>
+    </footer>
+
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeProductModal()">&times;</button>
+            <img id="modalImg" src="" alt="Product">
+            <h2 id="modalTitle">Nama Produk</h2>
+            <p id="modalDesc">Deskripsi produk di sini.</p>
+            <div class="modal-price" id="modalPrice">Rp0</div>
+            <button class="btn" style="width: 100%; margin-top: 15px;" id="modalAddBtn">Tambah ke Keranjang</button>
+        </div>
+    </div>
+
+    <div class="cart-overlay" id="cartOverlay">
+        <div class="cart-popup">
+            <div class="cart-header">
+                <h2>Keranjang Belanja</h2>
+                <button class="modal-close" style="position: static;" onclick="toggleCart()">&times;</button>
+            </div>
+            
+            <div class="cart-scroll-area">
+                <div id="cartItems">
+                    </div>
+                
+                <div class="cart-total" id="cartTotal">TOTAL: Rp0</div>
+                
+                <div class="buyer-form">
+                    <div class="form-group">
+                        <label>Nama</label>
+                        <input type="text" id="buyerName" placeholder="Nama lengkap..." oninput="checkForm()">
+                    </div>
+                    <div class="form-group">
+                        <label>No. HP</label>
+                        <input type="number" id="buyerPhone" placeholder="08xxxxxxxx" oninput="checkForm()">
+                    </div>
+                    <div class="form-group">
+                        <label>Catatan</label>
+                        <textarea id="buyerAddress" rows="2" placeholder="Alamat / Catatan pesanan..." oninput="checkForm()"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div style="padding: 0 20px 20px 20px; background: var(--white); border-top: 1px solid #eee;">
+                <button class="checkout-btn" id="checkoutBtn" disabled onclick="checkoutWA()">Pesan via WhatsApp</button>
+            </div>
+        </div>
+    </div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
-        // INISIALISASI ANIMASI SCROLL (AOS)
-        AOS.init({
-            duration: 800, // Kecepatan animasi 0.8 detik
-            offset: 100,   // Animasi jalan saat elemen berjarak 100px dari bawah layar
-            once: true     // Animasi hanya jalan 1x (tidak mengulang saat di-scroll ke atas)
-        });
-
-        // [FITUR 7] MENGHILANGKAN PRELOADER SAAT HALAMAN SELESAI DIMUAT
+        // --- PRELOADER ---
         window.addEventListener('load', () => {
             const preloader = document.getElementById('preloader');
             preloader.style.opacity = '0';
-            setTimeout(() => {
-                preloader.style.visibility = 'hidden';
-            }, 500);
+            setTimeout(() => { preloader.style.visibility = 'hidden'; }, 500);
         });
 
-        // [FITUR 6] MEMUNCULKAN TOMBOL BACK TO TOP SAAT DI-SCROLL KE BAWAH
+        // --- BACK TO TOP BUTTON ---
         window.addEventListener('scroll', () => {
             const backToTop = document.getElementById('backToTop');
-            if (window.scrollY > 400) {
-                backToTop.classList.add('show');
-            } else {
-                backToTop.classList.remove('show');
-            }
+            if (window.scrollY > 400) { backToTop.classList.add('show'); } 
+            else { backToTop.classList.remove('show'); }
         });
 
-        // [FITUR 2] FUNGSI MEMUNCULKAN TOAST NOTIFICATION
-        function showToast(namaProduk) {
-            const toast = document.getElementById('toast');
-            const toastMsg = document.getElementById('toastMsg');
-            
-            toastMsg.innerText = `${namaProduk} masuk keranjang!`;
-            toast.classList.add('show');
-            
-            // Hilangkan otomatis setelah 3 detik
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
+        // --- AOS INIT (ANIMASI SCROLL) ---
+        AOS.init({ duration: 800, offset: 100, once: true });
+
+        // --- SWIPER INIT (KATALOG) ---
+        var swiper = new Swiper(".mySwiper", {
+            effect: "coverflow", grabCursor: true, centeredSlides: true,
+            slidesPerView: "auto",
+            coverflowEffect: { rotate: 50, stretch: 0, depth: 100, modifier: 1, slideShadows: true },
+            loop: true, speed: 2000,   
+            autoplay: { delay: 0, disableOnInteraction: false, pauseOnMouseEnter: false },
+            pagination: { el: ".swiper-pagination", clickable: true },
+        });
+
+        // --- JAM DIGITAL ---
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            document.getElementById('digitalClock').innerText = timeString;
+        }
+        setInterval(updateClock, 1000); updateClock();
+
+        // --- HAMBURGER MENU ---
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
         }
 
-        // --- CONTOH INTEGRASI TOAST DI DALAM FUNGSI CART ---
-        // PENTING: Panggil fungsi `showToast` di dalam fungsi Add to Cart JavaScript milikmu
-        function tambahKeKeranjang(namaProduk) {
-            // (Logika push array cart aslimu di sini)
-            
-            // Panggil toast-nya
-            showToast(namaProduk);
-            
-            // Update angka keranjang
-            document.getElementById('cartCount').innerText = parseInt(document.getElementById('cartCount').innerText) + 1;
-        }
-
-        // ==========================================
-        // PASTE SISA JAVASCRIPT ASLIMU DI BAWAH INI
-        // (Swiper, Dark Mode Toggle, Logika WA, dll)
-        // ==========================================
+        // --- DARK MODE LOGIC (WITH LOCALSTORAGE) ---
         function toggleTheme() {
             document.body.classList.toggle('dark-mode');
             const isDark = document.body.classList.contains('dark-mode');
             document.getElementById('themeIcon').className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.body.classList.add('dark-mode');
+                document.getElementById('themeIcon').className = 'fas fa-sun';
+            }
+        });
+
+        // --- SEARCH LOGIC ---
+        function toggleSearch() {
+            const searchBar = document.getElementById('searchBar');
+            searchBar.style.display = searchBar.style.display === 'block' ? 'none' : 'block';
+            if(searchBar.style.display === 'block') document.getElementById('searchInput').focus();
+        }
+
+        function searchProduct() {
+            let filter = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.getElementsByClassName('menu-card');
+            for (let i = 0; i < cards.length; i++) {
+                let title = cards[i].querySelector('h3').innerText.toLowerCase();
+                cards[i].style.display = title.includes(filter) ? "" : "none";
+            }
+        }
+
+        // Tutup search jika klik di luar
+        document.addEventListener('click', function(event) {
+            const searchBar = document.getElementById("searchBar");
+            const searchBtn = document.getElementById("searchBtn");
+            if (searchBar.style.display === "block" && !searchBar.contains(event.target) && !searchBtn.contains(event.target)) {
+                searchBar.style.display = "none";
+            }
+        });
+
+        // --- TOAST NOTIFICATION ---
+        function showToast(namaProduk) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMsg').innerText = `${namaProduk} masuk keranjang!`;
+            toast.classList.add('show');
+            setTimeout(() => { toast.classList.remove('show'); }, 3000);
+        }
+
+        // --- MODAL PRODUK ---
+        function openProductModal(name, price, img, desc) {
+            document.getElementById('modalTitle').innerText = name;
+            document.getElementById('modalPrice').innerText = 'Rp' + price.toLocaleString('id-ID');
+            document.getElementById('modalImg').src = img;
+            document.getElementById('modalDesc').innerText = desc;
+            
+            const btn = document.getElementById('modalAddBtn');
+            btn.onclick = function() {
+                addToCart(name, price, img);
+                closeProductModal();
+            };
+            
+            document.getElementById('productModal').style.display = 'flex';
+        }
+
+        function closeProductModal() {
+            document.getElementById('productModal').style.display = 'none';
+        }
+
+        // --- LOGIKA KERANJANG BELANJA ---
+        let cart = JSON.parse(localStorage.getItem('cartData')) || [];
+
+        function addToCart(name, price, img) {
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.qty += 1;
+            } else {
+                cart.push({ name, price, img, qty: 1 });
+            }
+            saveCart();
+            updateCartUI();
+            showToast(name); // Menampilkan toast notifikasi
+        }
+
+        function ubahQty(index, delta) {
+            cart[index].qty += delta;
+            if (cart[index].qty <= 0) cart.splice(index, 1);
+            saveCart(); updateCartUI(); checkForm();
+        }
+
+        function saveCart() {
+            localStorage.setItem('cartData', JSON.stringify(cart));
+        }
+
+        function updateCartUI() {
+            const cartItemsContainer = document.getElementById('cartItems');
+            const cartCount = document.getElementById('cartCount');
+            const cartTotal = document.getElementById('cartTotal');
+            
+            cartItemsContainer.innerHTML = '';
+            let totalQty = 0;
+            let grandTotal = 0;
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p style="text-align:center; color:#999;">Keranjang masih kosong</p>';
+            } else {
+                cart.forEach((item, index) => {
+                    totalQty += item.qty;
+                    let subtotal = item.price * item.qty;
+                    grandTotal += subtotal;
+
+                    cartItemsContainer.innerHTML += `
+                        <div class="cart-item">
+                            <img src="${item.img}" alt="${item.name}">
+                            <div class="cart-item-details">
+                                <span class="cart-item-title">${item.name}</span>
+                                <div class="cart-item-calc">
+                                    Rp${item.price.toLocaleString('id-ID')}
+                                    <div class="qty-control">
+                                        <button class="qty-btn" onclick="ubahQty(${index}, -1)">-</button>
+                                        <span>${item.qty}</span>
+                                        <button class="qty-btn" onclick="ubahQty(${index}, 1)">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+
+            cartCount.innerText = totalQty;
+            cartTotal.innerText = `TOTAL: Rp${grandTotal.toLocaleString('id-ID')}`;
+            checkForm();
+        }
+
+        function toggleCart() {
+            const overlay = document.getElementById('cartOverlay');
+            overlay.style.display = overlay.style.display === 'flex' ? 'none' : 'flex';
+            if (overlay.style.display === 'flex') updateCartUI();
+        }
+
+        // --- CHECKOUT WHATSAPP LOGIC ---
+        function checkForm() {
+            const name = document.getElementById('buyerName').value.trim();
+            const phone = document.getElementById('buyerPhone').value.trim();
+            const address = document.getElementById('buyerAddress').value.trim();
+            const btn = document.getElementById('checkoutBtn');
+
+            if (name !== '' && phone !== '' && address !== '' && cart.length > 0) {
+                btn.disabled = false;
+                btn.classList.add('active');
+            } else {
+                btn.disabled = true;
+                btn.classList.remove('active');
+            }
+        }
+
+        function checkoutWA() {
+            const name = document.getElementById('buyerName').value.trim();
+            const phone = document.getElementById('buyerPhone').value.trim();
+            const address = document.getElementById('buyerAddress').value.trim();
+            
+            let message = `Halo Admin PAPERBLOX, saya mau pesan:\n\n`;
+            let grandTotal = 0;
+
+            cart.forEach(item => {
+                let subtotal = item.price * item.qty;
+                grandTotal += subtotal;
+                message += `- *${item.name}* (${item.qty}x) = Rp${subtotal.toLocaleString('id-ID')}\n`;
+            });
+
+            message += `\n*TOTAL: Rp${grandTotal.toLocaleString('id-ID')}*\n\n`;
+            message += `Detail Pembeli:\nNama: ${name}\nNo HP: ${phone}\nAlamat/Catatan: ${address}`;
+
+            const encodedMsg = encodeURIComponent(message);
+            const waNumber = "6287884996054"; 
+            window.open(`https://wa.me/${waNumber}?text=${encodedMsg}`, "_blank");
+
+            // Kosongkan keranjang setelah checkout
+            cart = []; 
+            saveCart(); 
+            toggleCart(); 
+            updateCartUI();
+            
+            // Kosongkan form
+            document.getElementById('buyerName').value = '';
+            document.getElementById('buyerPhone').value = '';
+            document.getElementById('buyerAddress').value = '';
+        }
+
+        // Panggil UI saat pertama load agar angka merah di keranjang tetap sesuai memori
+        updateCartUI();
     </script>
 </body>
 </html>
