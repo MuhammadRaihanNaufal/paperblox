@@ -856,7 +856,7 @@
             effect: "coverflow", grabCursor: true, centeredSlides: true,
             slidesPerView: "auto",
             coverflowEffect: { rotate: 50, stretch: 0, depth: 100, modifier: 1, slideShadows: true },
-            loop: true, speed: 2000,   
+            loop: true, speed: 1000,   
             autoplay: { delay: 0, disableOnInteraction: false, pauseOnMouseEnter: false },
             pagination: { el: ".swiper-pagination", clickable: true },
         });
@@ -1053,7 +1053,7 @@
             let grandTotal = 0;
 
             if (cart.length === 0) {
-                cartItemsContainer.innerHTML = '<p style="text-align:center; color:#999; margin-top: 0; margin-bottom: 35px;">Keranjang masih kosong</p>';
+                cartItemsContainer.innerHTML = '<p style="text-align:center; color:#999; margin-top: 0; margin-bottom: 30px;">Keranjang masih kosong</p>';
             } else {
                 cart.forEach((item, index) => {
                     totalQty += item.qty;
