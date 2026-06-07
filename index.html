@@ -814,7 +814,7 @@
                     </div>
                     <div class="form-group">
                         <label>No. HP</label>
-                        <input type="number" id="buyerPhone" placeholder="08xxxxxxxx" oninput="checkForm()">
+                        <input type="tel" id="buyerPhone" placeholder="08xxxxxxxx" oninput="formatPhone(this)">
                     </div>
                     <div class="form-group">
                         <label>Catatan</label>
@@ -1099,6 +1099,35 @@
             if (overlay.style.display === 'flex') updateCartUI();
         }
 
+        function formatPhone(input) {
+            // Hapus semua karakter yang bukan angka
+            let val = input.value.replace(/\D/g, '');
+
+            // Ubah awalan 62 menjadi 0 jika pembeli menempelkan (paste) nomor
+            if (val.startsWith('62')) {
+                val = '0' + val.substring(2);
+            }
+
+            // Pastikan format selalu diawali 08
+            if (val.length > 0) {
+                if (val === '0') {
+                    // Biarkan jika baru mengetik '0'
+                } else if (val.length === 1 && val !== '0') {
+                    // Jika huruf pertama diketik selain 0 (misal 8), otomatis jadi 08
+                    val = '08' + val;
+                } else if (val.length >= 2 && !val.startsWith('08')) {
+                    // Jika mengetik 0 tapi karakter kedua bukan 8, paksa jadi 08
+                    val = '08' + val.substring(2);
+                }
+            }
+
+            // Batasi panjang maksimal 15 digit dan kembalikan nilainya ke input
+            input.value = val.substring(0, 15);
+
+            // Panggil fungsi checkForm untuk mengecek kelayakan tombol checkout
+            checkForm();
+        }
+
         // --- CHECKOUT WHATSAPP LOGIC ---
         function checkForm() {
             const name = document.getElementById('buyerName').value.trim();
@@ -1106,7 +1135,10 @@
             const address = document.getElementById('buyerAddress').value.trim();
             const btn = document.getElementById('checkoutBtn');
 
-            if (name !== '' && phone !== '' && address !== '' && cart.length > 0) {
+            // Tambahkan syarat validasi: HP harus mulai dari 08 dan minimal 10 digit
+            const isPhoneValid = phone.startsWith('08') && phone.length >= 10;
+
+            if (name !== '' && isPhoneValid && address !== '' && cart.length > 0) {
                 btn.disabled = false;
                 btn.classList.add('active');
             } else {
