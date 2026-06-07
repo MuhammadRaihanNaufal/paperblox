@@ -840,7 +840,7 @@
             preloader.style.opacity = '0';
             setTimeout(() => { 
                 preloader.style.visibility = 'hidden'; 
-                AOS.refresh(); // Tambahkan baris ini
+                AOS.refreshHard(); // Tambahkan baris ini
             }, 500);
         });
 
@@ -966,8 +966,8 @@
             // --- TAMBAHAN KODE UNTUK MENCEGAH BAGIAN BAWAH KOSONG ---
             // Memberitahu AOS untuk menghitung ulang posisi setelah tinggi halaman berubah
             setTimeout(() => {
-                AOS.refresh();
-            }, 200);
+                AOS.refreshHard();
+            }, 300);
         }
 
         function renderPagination() {
