@@ -262,6 +262,55 @@
             body.dark-mode .nav-links a { border-bottom-color: #333; }
             .hero { flex-direction: column-reverse; text-align: center; padding: 40px 20px; }
         }
+
+        /* --- TAMPILAN HP: PAKET 2x2 (ABOUT, PEMESANAN, TEAM) --- */
+        @media screen and (max-width: 768px) {
+            
+            /* 1. Bagian Kenapa Paperblox (About) */
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 15px !important;
+            }
+            .feature-card { padding: 15px !important; }
+            .feature-card div { font-size: 2rem !important; margin-bottom: 10px !important; }
+            .feature-card h3 { font-size: 0.9rem !important; margin-bottom: 5px !important; }
+            .feature-card p { font-size: 0.75rem !important; }
+
+            /* 2. Bagian Pemesanan (Produk) */
+            .menu-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 10px !important;
+            }
+            .menu-card { display: flex; flex-direction: column !important; justify-content: space-between !important; }
+            .menu-card .menu-img { height: 130px !important; padding: 10px !important; }
+            .menu-info { padding: 10px !important; }
+            .menu-info h3 { font-size: 0.9rem !important; margin-bottom: 5px !important; }
+            
+            /* Membatasi teks deskripsi maksimal 2 baris agar tinggi kartu rata */
+            .menu-info .desc { 
+                font-size: 0.75rem !important; 
+                line-height: 1.3 !important; 
+                margin-bottom: 8px !important;
+                display: -webkit-box;
+                -webkit-line-clamp: 2; 
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+            
+            .stars { font-size: 0.7rem !important; margin-bottom: 8px !important; }
+            .price { font-size: 0.85rem !important; }
+            .add-btn { width: 30px !important; height: 30px !important; font-size: 0.8rem !important; }
+
+            /* 3. Bagian Team Kami */
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 15px !important;
+            }
+            .team-member { padding: 15px !important; }
+            .member-photo { width: 75px !important; height: 75px !important; margin-bottom: 10px !important; }
+            .team-member h3 { font-size: 0.9rem !important; margin-bottom: 5px !important; }
+            .team-member p { font-size: 0.75rem !important; margin-bottom: 0 !important; }
+        }
     </style>
 </head>
 <body>
@@ -345,6 +394,26 @@
                 <div class="swiper-slide"><img src="img/demonslayer.png" alt="Tanjiro"></div>
                 <div class="swiper-slide"><img src="img/luffy.png" alt="Luffy"></div>
                 <div class="swiper-slide"><img src="img/minato.png" alt="Minato"></div>
+                <div class="swiper-slide"><img src="img/chifuyu.png" alt="Chifuyu"></div>
+                <div class="swiper-slide"><img src="img/deidara.png" alt="Deidara"></div>
+                <div class="swiper-slide"><img src="img/eren.png" alt="Eren"></div>
+                <div class="swiper-slide"><img src="img/gojo.png" alt="Gojo"></div>
+                <div class="swiper-slide"><img src="img/guts.png" alt="Guts"></div>
+                <div class="swiper-slide"><img src="img/hinata.png" alt="Hinata"></div>
+                <div class="swiper-slide"><img src="img/itachi.png" alt="Itachi"></div>
+                <div class="swiper-slide"><img src="img/kakashi.png" alt="Kakashi"></div>
+                <div class="swiper-slide"><img src="img/levi.png" alt="Levi"></div>
+                <div class="swiper-slide"><img src="img/mikasa.png" alt="Mikasa"></div>
+                <div class="swiper-slide"><img src="img/mitsuya.png" alt="Mitsuya"></div>
+                <div class="swiper-slide"><img src="img/nami.png" alt="Nami"></div>
+                <div class="swiper-slide"><img src="img/naruto.png" alt="Naruto"></div>
+                <div class="swiper-slide"><img src="img/neji.png" alt="Neji"></div>
+                <div class="swiper-slide"><img src="img/pain.png" alt="Pain"></div>
+                <div class="swiper-slide"><img src="img/rocklee.png" alt="Rock Lee"></div>
+                <div class="swiper-slide"><img src="img/sakura.png" alt="Sakura"></div>
+                <div class="swiper-slide"><img src="img/sasori.png" alt="Sasori"></div>
+                <div class="swiper-slide"><img src="img/tobi.png" alt="Tobi"></div>
+                <div class="swiper-slide"><img src="img/zoro.png" alt="Zoro"></div>
             </div>
             <div class="swiper-pagination"></div>
         </div>
