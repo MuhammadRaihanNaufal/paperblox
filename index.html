@@ -248,6 +248,14 @@
         .checkout-btn.active:hover { background: var(--wa-dark); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4); }
         @keyframes fadeUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
+        /* --- PAGINATION --- */
+        .pagination { display: flex; justify-content: center; gap: 10px; margin-top: 40px; margin-bottom: 20px;}
+        .page-btn { background: var(--white); color: var(--primary); border: 2px solid var(--primary); padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        body.dark-mode .page-btn { background: var(--bg); border-color: var(--accent); color: var(--tt); }
+        .page-btn.active { background: var(--primary); color: var(--bg); }
+        body.dark-mode .page-btn.active { background: var(--accent); color: #fff; }
+        .page-btn:hover:not(.active) { background: var(--accent); color: white; border-color: var(--accent); }
+
         /* --- MEDIA QUERY RESPONSIVE --- */
         @media screen and (max-width: 900px) {
             .hamburger { display: flex; }
@@ -738,6 +746,7 @@
             </div>
 
         </div>
+        <div class="pagination" id="paginationControls"></div>
     </section>
 
     <section class="team" id="team">
@@ -906,10 +915,69 @@
 
         function searchProduct() {
             let filter = document.getElementById('searchInput').value.toLowerCase();
-            let cards = document.getElementsByClassName('menu-card');
-            for (let i = 0; i < cards.length; i++) {
-                let title = cards[i].querySelector('h3').innerText.toLowerCase();
-                cards[i].style.display = title.includes(filter) ? "" : "none";
+            const paginationContainer = document.getElementById("paginationControls");
+            
+            // Jika kolom pencarian kosong, kembalikan tampilan ke mode pagination
+            if (filter.trim() === "") {
+                paginationContainer.style.display = "flex";
+                renderProducts();
+                return;
+            }
+
+            // Jika sedang mencari, sembunyikan tombol halaman dan cari di SEMUA produk
+            paginationContainer.style.display = "none";
+            menuCards.forEach(card => {
+                let title = card.querySelector('h3').innerText.toLowerCase();
+                if (title.includes(filter)) {
+                    card.style.display = "";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+
+        // --- LOGIKA PAGINATION (HALAMAN) PEMESANAN ---
+        const itemsPerPage = 8;
+        let currentPage = 1;
+        let menuCards = []; 
+
+        document.addEventListener("DOMContentLoaded", () => {
+            // Ambil semua produk saat halaman pertama kali dimuat
+            menuCards = Array.from(document.querySelectorAll("#menuGrid .menu-card"));
+            renderProducts();
+            renderPagination();
+        });
+
+        function renderProducts() {
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+
+            menuCards.forEach((card, index) => {
+                if (index >= start && index < end) {
+                    card.style.display = ""; // Tampilkan produk untuk halaman ini
+                } else {
+                    card.style.display = "none"; // Sembunyikan sisanya
+                }
+            });
+        }
+
+        function renderPagination() {
+            const totalPages = Math.ceil(menuCards.length / itemsPerPage);
+            const paginationContainer = document.getElementById("paginationControls");
+            paginationContainer.innerHTML = ""; // Bersihkan tombol sebelumnya
+
+            for (let i = 1; i <= totalPages; i++) {
+                const btn = document.createElement("button");
+                btn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
+                btn.innerText = i;
+                btn.onclick = () => {
+                    currentPage = i;
+                    renderProducts();
+                    renderPagination();
+                    // Scroll halus kembali ke bagian atas pemesanan saat pindah halaman
+                    document.getElementById('pemesanan').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                };
+                paginationContainer.appendChild(btn);
             }
         }
 
