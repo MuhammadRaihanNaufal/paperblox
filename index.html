@@ -838,7 +838,10 @@
         window.addEventListener('load', () => {
             const preloader = document.getElementById('preloader');
             preloader.style.opacity = '0';
-            setTimeout(() => { preloader.style.visibility = 'hidden'; }, 500);
+            setTimeout(() => { 
+                preloader.style.visibility = 'hidden'; 
+                AOS.refresh(); // Tambahkan baris ini
+            }, 500);
         });
 
         // --- BACK TO TOP BUTTON ---
@@ -959,6 +962,12 @@
                     card.style.display = "none"; // Sembunyikan sisanya
                 }
             });
+
+            // --- TAMBAHAN KODE UNTUK MENCEGAH BAGIAN BAWAH KOSONG ---
+            // Memberitahu AOS untuk menghitung ulang posisi setelah tinggi halaman berubah
+            setTimeout(() => {
+                AOS.refresh();
+            }, 200);
         }
 
         function renderPagination() {
