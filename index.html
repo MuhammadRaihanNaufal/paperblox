@@ -52,18 +52,48 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        /* --- PRELOADER --- */
+        /* --- PRELOADER (TEMA PAPERBLOX) --- */
         #preloader {
             position: fixed; inset: 0; background: var(--bg); z-index: 100000; 
             display: flex; flex-direction: column; align-items: center; justify-content: center; 
-            transition: opacity 0.5s ease, visibility 0.5s ease;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
         }
-        .loader-spinner {
-            width: 60px; height: 60px; 
-            border: 5px solid rgba(93, 173, 226, 0.2); border-top: 5px solid var(--accent); 
-            border-radius: 50%; animation: spin 1s linear infinite;
+
+        /* Kotak melipat seperti kertas origami */
+        .flip-box {
+            width: 45px; height: 45px; 
+            background-color: var(--accent);
+            animation: flip 1.2s infinite ease-in-out;
+            margin-bottom: 25px;
+            border-radius: 4px;
         }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        /* Keyframes untuk efek 3D flip */
+        @keyframes flip {
+            0% { transform: perspective(120px) rotateX(0deg) rotateY(0deg); }
+            50% { 
+                transform: perspective(120px) rotateX(-180deg) rotateY(0deg); 
+                background-color: var(--primary); /* Berubah warna saat melipat */
+            }
+            100% { 
+                transform: perspective(120px) rotateX(-180deg) rotateY(-180deg); 
+                background-color: var(--accent); 
+            }
+        }
+
+        /* Teks berkedip halus */
+        .loading-text {
+            color: var(--primary); 
+            letter-spacing: 6px; 
+            font-size: 1.2rem;
+            font-weight: bold;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
 
         /* --- BACK TO TOP --- */
         .back-to-top {
@@ -79,14 +109,25 @@
 
         /* --- TOAST NOTIFICATION --- */
         .toast {
-            position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%); 
+            position: fixed; 
+            bottom: -200px; /* Ditarik lebih jauh ke bawah */
+            left: 50%; 
+            transform: translateX(-50%); 
             background: var(--wa); color: white; padding: 12px 25px; 
             border-radius: 30px; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.2); 
-            z-index: 10005; transition: bottom 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 10005; 
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             display: flex; align-items: center; gap: 10px;
+            opacity: 0; /* Menjadikan notifikasi transparan saat sembunyi */
+            visibility: hidden; /* Mencegah layar tidak sengaja terklik */
         }
         body.dark-mode .toast { background: var(--wa-dark); }
-        .toast.show { bottom: 40px; }
+        
+        .toast.show { 
+            bottom: 40px; 
+            opacity: 1; /* Terlihat kembali saat aktif */
+            visibility: visible;
+        }
 
         /* --- NAVBAR --- */
         nav {
@@ -325,8 +366,8 @@
 <body>
 
     <div id="preloader">
-        <div class="loader-spinner"></div>
-        <h2 style="color: var(--primary); margin-top: 15px; letter-spacing: 3px;">PAPERBLOX</h2>
+        <div class="flip-box"></div>
+        <h2 class="loading-text">PAPERBLOX</h2>
     </div>
 
     <button id="backToTop" class="back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})" title="Kembali ke atas">
