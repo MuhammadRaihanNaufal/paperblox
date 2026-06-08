@@ -310,6 +310,19 @@
             .nav-links a { width: 100%; text-align: center; padding: 20px 0; border-bottom: 1px solid #f0f0f0; display: block; }
             body.dark-mode .nav-links a { border-bottom-color: #333; }
             .hero { flex-direction: column-reverse; text-align: center; padding: 40px 20px; }
+            /* --- TAMBAHAN UNTUK TOMBOL DARK MODE --- */
+            #darkModeBtn { 
+                width: 100%; 
+                border-radius: 0; 
+                padding: 20px 0; 
+                border-bottom: 1px solid #f0f0f0; 
+                display: flex; 
+                justify-content: center; 
+                font-size: 1.5rem; 
+            }
+            body.dark-mode #darkModeBtn { 
+                border-bottom-color: #333; 
+            }
         }
 
         /* --- TAMPILAN HP: PAKET 2x2 (ABOUT, PEMESANAN, TEAM) --- */
@@ -388,11 +401,11 @@
                 <a href="#pemesanan" onclick="toggleMenu()">Pemesanan</a>
                 <a href="#team" onclick="toggleMenu()">Team</a>
                 <a href="#contact" onclick="toggleMenu()">Contact</a>
-            </div>
 
-            <button class="icon-btn" id="darkModeBtn" onclick="toggleTheme()" title="Toggle Dark Mode">
-                <i class="fas fa-moon" id="themeIcon"></i>
-            </button>
+                <button class="icon-btn" id="darkModeBtn" onclick="toggleTheme()" title="Toggle Dark Mode">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
+            </div>
 
             <button class="icon-btn" id="searchBtn" onclick="toggleSearch()">
                 <i class="fas fa-search"></i>
