@@ -874,15 +874,21 @@
                 <div class="buyer-form">
                     <div class="form-group">
                         <label>Nama</label>
-                        <input type="text" id="buyerName" placeholder="Nama lengkap..." oninput="this.value = this.value.replace(/[^a-zA-Z\s.]/g, ''); checkForm();">
+                        <input type="text" id="buyerName" placeholder="Nama lengkap..." oninput="this.value = this.value.replace(/[^a-zA-Z\s.,]/g, ''); checkForm();">
                     </div>
                     <div class="form-group">
                         <label>No. HP</label>
-                        <input type="tel" id="buyerPhone" placeholder="08xxxxxxxx" oninput="formatPhone(this)">
+                        <input type="number" id="buyerPhone" placeholder="08xxxxxxxx" oninput="checkForm()">
                     </div>
+                    
+                    <div class="form-group">
+                        <label>Alamat</label>
+                        <textarea id="buyerAddress" rows="2" placeholder="Alamat lengkap pengiriman..." oninput="checkForm()"></textarea>
+                    </div>
+                    
                     <div class="form-group">
                         <label>Catatan</label>
-                        <textarea id="buyerAddress" rows="2" placeholder="Alamat / Catatan pesanan..." oninput="checkForm()"></textarea>
+                        <textarea id="buyerNote" rows="2" placeholder="Catatan pesanan (opsional)..." oninput="checkForm()"></textarea>
                     </div>
                 </div>
             </div>
@@ -1197,12 +1203,10 @@
             const name = document.getElementById('buyerName').value.trim();
             const phone = document.getElementById('buyerPhone').value.trim();
             const address = document.getElementById('buyerAddress').value.trim();
+            // Catatan tidak dimasukkan ke pengecekan wajib
             const btn = document.getElementById('checkoutBtn');
 
-            // Tambahkan syarat validasi: HP harus mulai dari 08 dan minimal 10 digit
-            const isPhoneValid = phone.startsWith('08') && phone.length >= 10;
-
-            if (name !== '' && isPhoneValid && address !== '' && cart.length > 0) {
+            if (name !== '' && phone !== '' && address !== '' && cart.length > 0) {
                 btn.disabled = false;
                 btn.classList.add('active');
             } else {
@@ -1215,6 +1219,7 @@
             const name = document.getElementById('buyerName').value.trim();
             const phone = document.getElementById('buyerPhone').value.trim();
             const address = document.getElementById('buyerAddress').value.trim();
+            const note = document.getElementById('buyerNote').value.trim(); // Ambil nilai catatan
             
             let message = `Halo Admin PAPERBLOX, saya mau pesan:\n\n`;
             let grandTotal = 0;
@@ -1226,7 +1231,9 @@
             });
 
             message += `\n*TOTAL: Rp${grandTotal.toLocaleString('id-ID')}*\n\n`;
-            message += `Detail Pembeli:\nNama: ${name}\nNo HP: ${phone}\nAlamat/Catatan: ${address}`;
+            
+            // Format pesan pembeli untuk WhatsApp
+            message += `Detail Pembeli:\nNama: ${name}\nNo HP: ${phone}\nAlamat: ${address}\nCatatan: ${note !== '' ? note : '-'}`;
 
             const encodedMsg = encodeURIComponent(message);
             const waNumber = "6287884996054"; 
@@ -1238,10 +1245,11 @@
             toggleCart(); 
             updateCartUI();
             
-            // Kosongkan form
+            // Kosongkan form setelah pesan terkirim
             document.getElementById('buyerName').value = '';
             document.getElementById('buyerPhone').value = '';
             document.getElementById('buyerAddress').value = '';
+            document.getElementById('buyerNote').value = '';
         }
 
         // Panggil UI saat pertama load agar angka merah di keranjang tetap sesuai memori
