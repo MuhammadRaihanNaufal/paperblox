@@ -1203,10 +1203,14 @@
             const name = document.getElementById('buyerName').value.trim();
             const phone = document.getElementById('buyerPhone').value.trim();
             const address = document.getElementById('buyerAddress').value.trim();
-            // Catatan tidak dimasukkan ke pengecekan wajib
+            const note = document.getElementById('buyerNote').value.trim(); 
             const btn = document.getElementById('checkoutBtn');
 
-            if (name !== '' && phone !== '' && address !== '' && cart.length > 0) {
+            // Validasi Nomor HP: Harus diawali "08" dan panjang total 10 sampai 13 digit
+            const isPhoneValid = /^08\d{8,11}$/.test(phone);
+
+            // Sekarang variabel isPhoneValid menggantikan pengecekan phone !== ''
+            if (name !== '' && isPhoneValid && address !== '' && note !== '' && cart.length > 0) {
                 btn.disabled = false;
                 btn.classList.add('active');
             } else {
